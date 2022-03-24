@@ -1,0 +1,49 @@
+* {
+  font-family: 'SF Pro Text Regular', sans-serif;
+}
+
+.font-500 {
+  font-family: 'SF Pro Text Medium', sans-serif;
+  font-weight: 500;
+}
+
+.font-bold {
+  font-family: 'SF Pro Text Bold', sans-serif;
+  font-weight: 700;
+}
+
+.KYCbgSVG {
+  background-image: url(/svg/KYCBackground.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bgSVG {
+  background-image: url(/svg/userBG.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Fonts */
+@font-face {
+  font-family: 'SF Pro Text Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/FontsFree-Net-SFProText-Regular-1.ttf');
+}
+
+@font-face {
+  font-family: 'SF Pro Text Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/FontsFree-Net-SFProText-Medium-1.ttf');
+}
+
+@font-face {
+  font-family: 'SF Pro Text Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../public/fonts/FontsFree-Net-SFProText-Bold-1.ttf');
+}
