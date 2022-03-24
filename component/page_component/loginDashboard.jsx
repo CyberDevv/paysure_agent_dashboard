@@ -88,7 +88,13 @@ const login = () => {
           {/* /remember me and forgotten passoword */}
           <div tw="flex items-center justify-between">
             <FormControlLabel
-              control={<Checkbox size="small" icon={<UnChecked />} checkedIcon= {<Checked />} />}
+              control={
+                <Checkbox
+                  size="small"
+                  icon={<UnChecked />}
+                  checkedIcon={<Checked />}
+                />
+              }
               label={<p tw="text-[13px]">Remember me</p>}
             />
 
@@ -100,8 +106,18 @@ const login = () => {
           </div>
 
           {/* login button */}
-          <MUIButton>Login to your account</MUIButton>
+          <MUIButton>
+            <Link href="/">
+              <a>Login to dashboard</a>
+            </Link>
+          </MUIButton>
         </Form>
+
+        <div tw="text-center w-full mt-6 text-[13px] hover:(underline text-paysure-primary-100)">
+          <Link href="/signup">
+            <a>Create a new account</a>
+          </Link>
+        </div>
       </Wrapper>
     </LoginLayout>
   )

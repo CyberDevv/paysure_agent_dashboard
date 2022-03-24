@@ -27,11 +27,11 @@ const SignUp = () => {
           <div>
             <label tw="pr-3">Sign up as:</label>
             <FormControlLabel
-              control={<Checkbox size="small" checked={true} />}
+              control={<Checkbox size="small" />}
               label={<p tw="text-sm text-[#4E5D78]">Super Agent</p>}
             />
             <FormControlLabel
-              control={<Checkbox size="small" />}
+              control={<Checkbox size="small" checked={true} />}
               label={<p tw="text-sm text-[#4E5D78]">Agent</p>}
             />
           </div>
