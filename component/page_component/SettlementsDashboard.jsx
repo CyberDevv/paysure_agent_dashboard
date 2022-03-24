@@ -21,46 +21,23 @@ import {
 const SettlementsDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
 
-  // array of agent page stats
-  const agentPageData = [
-    {
-      amount: (
-        <CurrencyFormat
-          value={5283232}
-          displayType={'text'}
-          thousandSeparator={true}
-          prefix={'₦'}
-        />
-      ),
-      title: 'Total Settlements',
-    },
-    {
-      amount: NumberFormatter(13230),
-      title: 'Total Number of Successful Settlements',
-    },
-    {
-      amount: NumberFormatter(10),
-      title: 'Total Number of Failed Settlements',
-    },
-    {
-      amount: NumberFormatter(3),
-      title: 'Total Number of Pending Settlements',
-    },
-  ]
-
   // array of agent stats
   const agencyOveriewData = [
     {
       amount: NumberFormatter(132423),
-      label: 'Total Number of Paysure Settlements',
+      label: 'Total Number of Settlements',
     },
     {
       amount: NumberFormatter(124232),
-      label: 'Total Number of Super Agent Settlements',
+      label: 'Total Number of Successful Settlements',
     },
     {
       amount: NumberFormatter(243),
-      label: 'Total  Number of Agent Settlements',
+      label: 'Total  Number of Failed Settlements',
+    },
+    {
+      amount: NumberFormatter(243),
+      label: 'Total  Number of Pending Settlements',
     },
   ]
 
@@ -172,13 +149,10 @@ const SettlementsDashboard = () => {
     <Layout title="Settlements">
       <section>
         <div css={[tw`flex justify-between items-center`]}>
-          <Ttile className="font-bold">Settlements</Ttile>
+          <Ttile className="font-bold">Settlement Overview</Ttile>
         </div>
 
-        <HomeDisplayCard data={agentPageData} />
-
         <OverViewCardTemp
-          title="Settlements Overview"
           data={agencyOveriewData}
         />
 
