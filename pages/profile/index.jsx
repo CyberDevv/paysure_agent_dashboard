@@ -2,7 +2,7 @@ import React from 'react'
 import tw from 'twin.macro'
 import Head from 'next/head'
 
-import { ProfileDashboard } from '../component'
+import { ProfileDashboard } from '../../component'
 
 const ProfilePage = () => (
   <div>
