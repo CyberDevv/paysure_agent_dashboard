@@ -1,7 +1,6 @@
 import React from 'react'
 import tw from 'twin.macro'
 import Link from 'next/link'
-import { Button } from '@mui/material'
 import CurrencyFormat from 'react-currency-format'
 
 import {
@@ -27,11 +26,6 @@ const HomeDashboard = () => {
         />
       ),
       title: 'Wallet Balance',
-    },
-    {
-      amount: NumberFormatter(13),
-      title: 'Total Number of Agents',
-      link: '/agents',
     },
     {
       amount: NumberFormatter(24),

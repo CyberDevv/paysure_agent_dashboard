@@ -9,8 +9,7 @@ import { Backdrop, Button } from '@mui/material'
 import {
   Categories,
   Settlement,
-  Support,
-  Terminals,
+  BillPayment,
   Transactions,
   Users,
   WalletSVG,
@@ -39,7 +38,7 @@ const SideBar_main_layout = ({ isSideBarOpen, setIsSideBarOpen }) => {
                   ? tw`text-paysure-primary-100`
                   : asPath.includes(`/${label.toLowerCase()}`)
                   ? tw`text-paysure-primary-100`
-                  : tw`text-gray-700 hover:text-gray-dark`,
+                  : tw`text-[#A6B7D4] hover:text-[#4A5568]`,
               ]}
             >
               <Span>{label}</Span>
@@ -71,12 +70,10 @@ const SideBar_main_layout = ({ isSideBarOpen, setIsSideBarOpen }) => {
 
         <Ul>
           <NavItem label="Home" icon={<Categories />} link="/" />
-          <NavItem label="Agents" icon={<Users />} />
-          <NavItem label="Terminals" icon={<Terminals />} />
-          <NavItem label="Settlements" icon={<Settlement />} />
+          <NavItem label="Bill Paymment" icon={<BillPayment link="billPayment" />} />
           <NavItem label="Wallet" icon={<WalletSVG />} />
+          <NavItem label="Settlements" icon={<Settlement />} />
           <NavItem label="Transactions" icon={<Transactions />} />
-          <NavItem label="Support" icon={<Support />} />
           <NavItem label="Profile" icon={<Users />} />
         </Ul>
       </Nav>
