@@ -31,6 +31,7 @@ export { default as SettlementsDashboard } from './page_component/SettlementsDas
 export { default as TransactionsDashboard } from './page_component/TransactionsDashboard'
 export { default as WalletHistoryDashboard } from './page_component/WalletHistoryDashboard'
 export { default as SetUpPasswordDashboard } from './page_component/SetUpPasswordDashboard'
+export { default as TvSubscriptionDashboard } from './page_component/TvSubscriptionDashboard'
 export { default as TransactionInfoDashboard } from './page_component/TransactionInfoDashboard'
 export { default as SettlementTransactionLIst } from './page_component/SettlementTransactionLIst'
 export { default as DatRangePickerAndOthers } from './DataGridFunctionalities/DatRangePickerAndOthers'
