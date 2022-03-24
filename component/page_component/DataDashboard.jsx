@@ -16,11 +16,11 @@ import {
   DatRangePickerAndOthers,
 } from '..'
 
-const AirtimeDashboard = () => {
+const DataDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
 
   // functions
-  const handleBuyAirtime = React.useCallback(() => setIsAddmodalOpened(true))
+  const handleBuyData = React.useCallback(() => setIsAddmodalOpened(true))
 
   // array of agent page stats
   const agentPageData = [
@@ -157,10 +157,10 @@ const AirtimeDashboard = () => {
     <Layout goBack>
       <section>
         <div css={[tw`flex justify-between items-center`]}>
-          <Ttile className="font-bold">Airtime</Ttile>
+          <Ttile className="font-bold">Data</Ttile>
 
-          <MUIButton onClick={handleBuyAirtime} startIcon={<Add />}>
-            Buy Airtime
+          <MUIButton onClick={handleBuyData} startIcon={<Add />}>
+            Buy Data
           </MUIButton>
         </div>
 
@@ -232,33 +232,6 @@ const AirtimeDashboard = () => {
     </Layout>
   )
 }
-
-const typedropdownData = [
-  {
-    value: 'all',
-    label: 'All',
-  },
-  {
-    value: 'pending',
-    label: 'Pending',
-  },
-  {
-    value: 'failed',
-    label: 'Failed',
-  },
-  {
-    value: 'deposit transfer',
-    label: 'Deposit Transfer',
-  },
-  {
-    value: 'unknown/pending',
-    label: 'Unknown/Pending',
-  },
-  {
-    value: 'income settlements',
-    label: 'Income Settlements',
-  },
-]
 
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [
@@ -347,4 +320,4 @@ const MUIButton = tw(
   Button,
 )`bg-paysure-primary-100 text-white normal-case rounded-lg p-3 pl-3.5 text-[13px] hover:(bg-paysure-primary-100 ring-2 ring-offset-2 ring-paysure-primary-100)`
 
-export default AirtimeDashboard
+export default DataDashboard
