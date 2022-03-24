@@ -28,7 +28,7 @@ const SideBar_main_layout = ({ isSideBarOpen, setIsSideBarOpen }) => {
   const NavItem = ({ label, icon, link }) => {
     return (
       <li>
-        <Link href={`/${link || label.toLowerCase()}`}>
+        <Link href={link || `/${label.toLowerCase()}`}>
           <a>
             <MUIButton
               fullWidth
@@ -70,7 +70,11 @@ const SideBar_main_layout = ({ isSideBarOpen, setIsSideBarOpen }) => {
 
         <Ul>
           <NavItem label="Home" icon={<Categories />} link="/" />
-          <NavItem label="Bill Paymment" icon={<BillPayment link="billPayment" />} />
+          <NavItem
+            label="Bill Paymment"
+            icon={<BillPayment />}
+            link="/billPayment"
+          />
           <NavItem label="Wallet" icon={<WalletSVG />} />
           <NavItem label="Settlements" icon={<Settlement />} />
           <NavItem label="Transactions" icon={<Transactions />} />
