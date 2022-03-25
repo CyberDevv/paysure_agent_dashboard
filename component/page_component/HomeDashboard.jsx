@@ -100,7 +100,7 @@ const HomeDashboard = () => {
             </KYCParagraph>
           </div>
 
-          <Link href="/profile">
+          <Link href="/profile/updateProfile">
             <KYCButton>Go to profile</KYCButton>
           </Link>
         </KYC>

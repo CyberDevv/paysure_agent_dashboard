@@ -436,8 +436,8 @@ export const SecuritySettingsSpeedDial = () => {
     <SvgIcon
       viewBox="0 0 18 18"
       sx={{
-        width: '24px',
-        height: '24px',
+        width: '20px',
+        height: '20px',
         fill: 'none',
       }}
     >
