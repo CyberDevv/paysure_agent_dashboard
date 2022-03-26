@@ -25,18 +25,20 @@ const SideBar_main_layout = ({ isSideBarOpen, setIsSideBarOpen }) => {
   `
 
   // NavItem Component
-  const NavItem = ({ label, icon, link }) => {
+  const NavItem = ({ label, icon, link, link2 }) => {
     return (
       <li>
-        <Link href={link || `/${label.toLowerCase()}`}>
+        <Link href={link || link2 || `/${label.toLowerCase()}`}>
           <a>
             <MUIButton
               fullWidth
               startIcon={icon}
               css={[
-                asPath === (link || `/${label.toLowerCase()}`)
+                asPath === (link || link2 || `/${label.toLowerCase()}`)
                   ? tw`text-paysure-primary-100`
                   : asPath.includes(`/${label.toLowerCase()}`)
+                  ? tw`text-paysure-primary-100`
+                  : asPath.includes(link2)
                   ? tw`text-paysure-primary-100`
                   : tw`text-[#A6B7D4] hover:text-[#4A5568]`,
               ]}
@@ -73,7 +75,7 @@ const SideBar_main_layout = ({ isSideBarOpen, setIsSideBarOpen }) => {
           <NavItem
             label="Bill Paymment"
             icon={<BillPayment />}
-            link="/billPayment"
+            link2="/billPayment"
           />
           <NavItem label="Wallet" icon={<WalletSVG />} />
           <NavItem label="Settlements" icon={<Settlement />} />
