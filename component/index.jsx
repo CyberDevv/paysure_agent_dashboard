@@ -40,6 +40,7 @@ export { default as TransactionsDashboard } from './page_component/TransactionsD
 export { default as WalletHistoryDashboard } from './page_component/WalletHistoryDashboard'
 export { default as SetUpPasswordDashboard } from './page_component/SetUpPasswordDashboard'
 export { default as UpdateProfileDashboard } from './page_component/UpdateProfileDashboard'
+export { default as BuyElectricityDashboard } from './page_component/BuyElectricityDashboard'
 export { default as TvSubscriptionDashboard } from './page_component/TvSubscriptionDashboard'
 export { default as TransactionInfoDashboard } from './page_component/TransactionInfoDashboard'
 export { default as SettlementTransactionLIst } from './page_component/SettlementTransactionLIst'

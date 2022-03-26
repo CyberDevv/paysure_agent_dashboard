@@ -15,6 +15,7 @@ import {
   FilterBox,
   DatRangePickerAndOthers,
 } from '..'
+import Link from 'next/link'
 
 const ElectricityDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
@@ -159,8 +160,10 @@ const ElectricityDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Electricity</Ttile>
 
-          <MUIButton onClick={handleBuyElectricity} startIcon={<Add />}>
-            Buy Electricity
+          <MUIButton startIcon={<Add />}>
+            <Link href="/billPayment/electricity/buyElectricity">
+              <a>Buy Electricity</a>
+            </Link>
           </MUIButton>
         </div>
 
