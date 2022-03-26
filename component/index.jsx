@@ -43,5 +43,6 @@ export { default as UpdateProfileDashboard } from './page_component/UpdateProfil
 export { default as TvSubscriptionDashboard } from './page_component/TvSubscriptionDashboard'
 export { default as TransactionInfoDashboard } from './page_component/TransactionInfoDashboard'
 export { default as SettlementTransactionLIst } from './page_component/SettlementTransactionLIst'
+export { default as BuyTvSubscriptionDashboard } from './page_component/BuyTvSubscriptionDashboard'
 export { default as DatRangePickerAndOthers } from './DataGridFunctionalities/DatRangePickerAndOthers'
 export { default as AccountVerificationDashboard } from './page_component/AccountVerificationDashboard'

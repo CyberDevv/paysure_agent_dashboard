@@ -5,19 +5,22 @@ import { styled } from '@mui/material/styles'
 import { Button, Divider, Switch } from '@mui/material'
 
 import { Verified, UnVerified, ArrowBack } from '../SVGIcons'
+import Router from 'next/router'
 
 const BuyAirtimeDashboard = ({ title, children, infoState, confirmState }) => {
+  const handleGoBack = React.useCallback(() => {
+    Router.back()
+  })
+
   return (
     <>
       <SectionsWrapper>
         {/* Section 1 */}
         <aside css={[tw`mt-4  w-full lg:(max-w-sm mt-8)`]}>
           <div>
-            <Link href="/billPayment/airtime">
-              <a tw="text-dark text-[13px] cursor-pointer ">
-                {<ArrowBack />} Back
-              </a>
-            </Link>
+            <button onClick={handleGoBack} tw="text-dark text-[13px] cursor-pointer ">
+              {<ArrowBack />} Back
+            </button>
             <Ttile className="font-bold">{title}</Ttile>
           </div>
 
