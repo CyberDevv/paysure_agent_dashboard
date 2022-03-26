@@ -15,12 +15,10 @@ import {
   FilterBox,
   DatRangePickerAndOthers,
 } from '..'
+import Link from 'next/link'
 
 const AirtimeDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
-
-  // functions
-  const handleBuyAirtime = React.useCallback(() => setIsAddmodalOpened(true))
 
   // array of agent page stats
   const agentPageData = [
@@ -159,8 +157,10 @@ const AirtimeDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Airtime</Ttile>
 
-          <MUIButton onClick={handleBuyAirtime} startIcon={<Add />}>
-            Buy Airtime
+          <MUIButton startIcon={<Add />}>
+            <Link href="/billPayment/airtime/buyAirtime">
+              <a>Buy Airtime</a>
+            </Link>
           </MUIButton>
         </div>
 
@@ -232,33 +232,6 @@ const AirtimeDashboard = () => {
     </Layout>
   )
 }
-
-const typedropdownData = [
-  {
-    value: 'all',
-    label: 'All',
-  },
-  {
-    value: 'pending',
-    label: 'Pending',
-  },
-  {
-    value: 'failed',
-    label: 'Failed',
-  },
-  {
-    value: 'deposit transfer',
-    label: 'Deposit Transfer',
-  },
-  {
-    value: 'unknown/pending',
-    label: 'Unknown/Pending',
-  },
-  {
-    value: 'income settlements',
-    label: 'Income Settlements',
-  },
-]
 
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [
