@@ -7,10 +7,10 @@ import { Button, Divider, FormControlLabel } from '@mui/material'
 import { TransactionSuccessSVG } from '../SVGIcons'
 import { Layout, PurchaseLayout, ReceiptLabel, TextField, IOSSwitch } from '..'
 
-const BuyAirtimeDashboard = () => {
+const BuyDataDashboard = () => {
   // UseState Hooks
   const [activeTab, setActiveTab] = React.useState('info')
-  const [amount, setAmount] = React.useState('')
+  const [plan, setPlan] = React.useState('')
   const [network, setNetwork] = React.useState('')
   const [phoneNumber, setPhoneNumber] = React.useState('')
   const [transactionPin, setTransactionPin] = React.useState('')
@@ -29,25 +29,30 @@ const BuyAirtimeDashboard = () => {
 
   return (
     <>
-      <Layout title="Bills ≫ Airtime">
+      <Layout title="Bills ≫ Data">
         <PurchaseLayout
-          title="Buy Airtime"
+          title="Data"
           infoState={infoEntered}
           confirmState={confilrmTransaction}
         >
           {activeTab === 'info' && (
             <form tw="space-y-5  ">
               <TextField
-                label="Amount"
-                placeholder="N 5000"
-                value={amount}
-                setValue={setAmount}
-              />
-              <TextField
                 label="Network"
                 select={['Airtel', 'MTN', 'Glo', '9mobile']}
                 value={network}
                 setValue={setNetwork}
+              />
+              <TextField
+                label="Choose Plan"
+                select={[
+                  'Data plan gives 100Gb for N20,000',
+                  'Data plan gives 75Gb for N15,000',
+                  'Data plan gives 40Gb for N10,000',
+                  'Data plan gives 11Gb for 4,000',
+                ]}
+                value={plan}
+                setValue={setPlan}
               />
               <TextField
                 label="Phone Number"
@@ -203,4 +208,4 @@ const MUIButton = tw(
   Button,
 )`bg-paysure-primary-100 block w-full text-white normal-case rounded-lg p-4 pl-3.5 text-sm hover:(bg-paysure-primary-100 ring-2 ring-offset-2 ring-paysure-primary-100)`
 
-export default BuyAirtimeDashboard
+export default BuyDataDashboard

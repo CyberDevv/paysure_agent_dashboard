@@ -15,6 +15,7 @@ import {
   FilterBox,
   DatRangePickerAndOthers,
 } from '..'
+import Link from 'next/link'
 
 const DataDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
@@ -159,8 +160,10 @@ const DataDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Data</Ttile>
 
-          <MUIButton onClick={handleBuyData} startIcon={<Add />}>
-            Buy Data
+          <MUIButton startIcon={<Add />}>
+            <Link href="/billPayment/data/buyData">
+              <a>Buy Data</a>
+            </Link>
           </MUIButton>
         </div>
 
