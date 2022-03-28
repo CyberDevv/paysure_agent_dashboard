@@ -24,8 +24,15 @@ const SettlementsDashboard = () => {
   // array of agent stats
   const agencyOveriewData = [
     {
-      amount: NumberFormatter(132423),
-      label: 'Total Number of Settlements',
+      amount: (
+        <CurrencyFormat
+          value={278322}
+          displayType={'text'}
+          thousandSeparator={true}
+          prefix={'₦'}
+        />
+      ),
+      label: 'Total Settlements',
     },
     {
       amount: NumberFormatter(124232),
@@ -76,14 +83,14 @@ const SettlementsDashboard = () => {
     {
       field: 'col4',
       headerName: 'Identifier',
-      minWidth: 126,
+      minWidth: 186,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
       field: 'col5',
-      headerName: 'Percentage',
-      minWidth: 101,
+      headerName: 'RRR',
+      minWidth: 201,
       flex: 1,
       headerClassName: 'grid-header',
     },
@@ -152,15 +159,13 @@ const SettlementsDashboard = () => {
           <Ttile className="font-bold">Settlement Overview</Ttile>
         </div>
 
-        <OverViewCardTemp
-          data={agencyOveriewData}
-        />
+        <OverViewCardTemp data={agencyOveriewData} />
 
         <DataGridViewTemp
           link="/settlements/transactionsList"
           limited
           title="Transaction Records"
-          rows={rows}
+          rows={[]}
           columns={columns}
           hasExportBtn
           className={tw`grid sm:grid-template-columns[auto] gap-4 w-full xl:(grid-cols-2)`}
@@ -168,7 +173,7 @@ const SettlementsDashboard = () => {
           <div tw="col-span-2 grid sm:grid-cols-2 gap-4 xl:(grid-cols-4)">
             <SearchBar />
             <FilterBox label="Type" dropdownData={typedropdownData} />
-            <FilterBox label="Status" dropdownData={dropdownData} />
+            <FilterBox label="Status" dropdownData={StatusdropdownData} />
             <FilterBox label="Benefactor" dropdownData={dropdownData} />
           </div>
           <DatRangePickerAndOthers />
@@ -252,8 +257,27 @@ const typedropdownData = [
   },
 ]
 
+const StatusdropdownData = [
+  {
+    value: 'all',
+    label: 'All',
+  },
+  {
+    value: 'failed',
+    label: 'Failed',
+  },
+  {
+    value: 'successful',
+    label: 'Successful',
+  },
+]
+
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [
+  {
+    value: 'all',
+    label: 'All',
+  },
   {
     value: 'user',
     label: 'User',

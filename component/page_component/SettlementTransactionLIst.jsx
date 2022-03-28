@@ -1,10 +1,9 @@
 import React from 'react'
 import tw from 'twin.macro'
-import { Button } from '@mui/material'
 
-import { Layout, DataGridViewTemp } from '..'
 import { ViewActionSVG, Print } from '../SVGIcons'
 import CurrencyFormat from 'react-currency-format'
+import { Layout, DataGridViewTemp, SearchBar, FilterBox, DatRangePickerAndOthers } from '..'
 
 const SettlementTransactionLIst = () => {
   return (
@@ -12,18 +11,19 @@ const SettlementTransactionLIst = () => {
       <section>
         <DataGridViewTemp
           title="Transaction Records"
-          rows={rows}
+          rows={[]}
           columns={columns}
-          dropdownData={dropdownData}
-          hasSearch
-          hasFilter="Benefactor"
-          hasSort
-          hasFilterStatus
-          StatusDropdownData={dropdownData}
-          hasFilterType
-          typeDropdownData={typedropdownData}
           hasExportBtn
-        />
+          className={tw`grid sm:grid-template-columns[auto] gap-4 w-full xl:(grid-cols-2)`}
+        >
+          <div tw="col-span-2 grid sm:grid-cols-2 gap-4 xl:(grid-cols-4)">
+            <SearchBar />
+            <FilterBox label="Type" dropdownData={typedropdownData} />
+            <FilterBox label="Status" dropdownData={StatusdropdownData} />
+            <FilterBox label="Benefactor" dropdownData={dropdownData} />
+          </div>
+          <DatRangePickerAndOthers />
+        </DataGridViewTemp>
       </section>
     </Layout>
   )
@@ -56,8 +56,27 @@ const typedropdownData = [
   },
 ]
 
+const StatusdropdownData = [
+  {
+    value: 'all',
+    label: 'All',
+  },
+  {
+    value: 'failed',
+    label: 'Failed',
+  },
+  {
+    value: 'successful',
+    label: 'Successful',
+  },
+]
+
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [
+  {
+    value: 'all',
+    label: 'All',
+  },
   {
     value: 'user',
     label: 'User',
@@ -173,14 +192,14 @@ const columns = [
   {
     field: 'col4',
     headerName: 'Identifier',
-    minWidth: 126,
+    minWidth: 186,
     flex: 1,
     headerClassName: 'grid-header',
   },
   {
     field: 'col5',
-    headerName: 'Percentage',
-    minWidth: 101,
+    headerName: 'RRR',
+    minWidth: 201,
     flex: 1,
     headerClassName: 'grid-header',
   },
@@ -197,6 +216,48 @@ const columns = [
     minWidth: 144,
     flex: 1,
     headerClassName: 'grid-header',
+  },
+  {
+    field: 'col8',
+    headerName: 'Action',
+    minWidth: 100,
+    flex: 1,
+    sortable: false,
+    headerClassName: 'grid-header',
+
+    renderCell: params => {
+      const handleEdit = () => {
+        console.log('edit')
+      }
+
+      const handleView = e => {
+        setModalView(true)
+
+        // const api = params.api
+        // const thisRow = {}
+
+        // api
+        //   .getAllColumns()
+        //   .filter(c => c.field !== '__check__' && !!c)
+        //   .forEach(
+        //     c => (thisRow[c.field] = params.getValue(params.id, c.field)),
+        //   )
+
+        // Router.push(`/transactions/${thisRow.col1}`)
+      }
+
+      return (
+        <div tw="space-x-1">
+          <button onClick={handleView}>
+            <ViewActionSVG />
+          </button>
+
+          <button onClick={handleView}>
+            <Print />
+          </button>
+        </div>
+      )
+    },
   },
 ]
 
