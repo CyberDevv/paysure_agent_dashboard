@@ -1,27 +1,23 @@
 import React from 'react'
 import tw from 'twin.macro'
 import Image from 'next/image'
-import { Button } from '@mui/material'
+import ReactToPrint from 'react-to-print'
 import CurrencyFormat from 'react-currency-format'
 
-import { Add, Print, ViewActionSVG } from '../SVGIcons'
+import { Print, ViewActionSVG } from '../SVGIcons'
 import {
   Layout,
-  OverViewCardTemp,
-  HomeDisplayCard,
   DataGridViewTemp,
-  NumberFormatter,
   Modal,
   ReceiptLabel,
-  SearchBar, 
-  FilterBox
+  FilterBox,
+  DatRangePickerAndOthers,
+  Receipt,
 } from '..'
-import Router from 'next/router'
 
 const TransactionsDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
 
-  
   const columns = [
     {
       field: 'col1',
@@ -32,28 +28,28 @@ const TransactionsDashboard = () => {
     },
     {
       field: 'col2',
-      headerName: 'Mark Pan',
+      headerName: 'Transaction Type',
       minWidth: 227,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
       field: 'col3',
-      headerName: 'Terminal ID',
+      headerName: 'Ref. No.',
       minWidth: 140,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
       field: 'col4',
-      headerName: 'Merchant Name',
+      headerName: 'Terminal ID',
       minWidth: 126,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
       field: 'col5',
-      headerName: 'Amount',
+      headerName: 'Pan Account',
       minWidth: 101,
       flex: 1,
       headerClassName: 'grid-header',
@@ -70,7 +66,7 @@ const TransactionsDashboard = () => {
     },
     {
       field: 'col6',
-      headerName: 'Charge',
+      headerName: 'Auth Code',
       minWidth: 139,
       flex: 1,
       headerClassName: 'grid-header',
@@ -87,42 +83,69 @@ const TransactionsDashboard = () => {
     },
     {
       field: 'col7',
-      headerName: 'Transaction Ref.',
+      headerName: 'Amount',
+      minWidth: 101,
+      flex: 1,
+      headerClassName: 'grid-header',
+      renderCell: params => {
+        return (
+          <CurrencyFormat
+            value={params.row.col5}
+            displayType={'text'}
+            thousandSeparator={true}
+            prefix={'₦'}
+          />
+        )
+      },
+    },
+    {
+      field: 'col8',
+      headerName: 'Charge',
+      minWidth: 139,
+      flex: 1,
+      headerClassName: 'grid-header',
+      renderCell: params => {
+        return (
+          <CurrencyFormat
+            value={params.row.col6}
+            displayType={'text'}
+            thousandSeparator={true}
+            prefix={'₦'}
+          />
+        )
+      },
+    },
+    {
+      field: 'col9',
+      headerName: 'Settlement',
       minWidth: 144,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col8',
-      headerName: 'RRR',
+      field: 'col10',
+      headerName: 'Status',
       minWidth: 101,
       flex: 1,
       headerClassName: 'grid-header',
       disableClickEventBubbling: true,
     },
     {
-      field: 'col9',
-      headerName: 'Type',           
-      minWidth: 185,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
-      field: 'col10',
-      headerName: 'Status Code',
-      minWidth: 185,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
       field: 'col11',
-      headerName: 'Notification Time',
+      headerName: 'Date, Time',
       minWidth: 185,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
       field: 'col12',
+      headerName: 'RRR',
+      minWidth: 185,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col13',
       headerName: 'Action',
       minWidth: 100,
       flex: 1,
@@ -130,14 +153,11 @@ const TransactionsDashboard = () => {
       headerClassName: 'grid-header',
 
       renderCell: params => {
-        const handleEdit = () => {
-          console.log('edit')
-        }
+        const handlePrint = () => {}
 
         const handleView = e => {
-
           setModalView(true)
-          
+
           // const api = params.api
           // const thisRow = {}
 
@@ -157,14 +177,21 @@ const TransactionsDashboard = () => {
               <ViewActionSVG />
             </button>
 
-            <button onClick={handleView}>
-              <Print />
-            </button>
+            <ReactToPrint
+              trigger={() => (
+                <button onClick={handlePrint}>
+                  <Print />
+                </button>
+              )}
+              content={() => componentRef.current}
+            />
           </div>
         )
       },
     },
   ]
+
+  const componentRef = React.useRef()
 
   return (
     <Layout title="Transactions">
@@ -179,10 +206,12 @@ const TransactionsDashboard = () => {
           hasExportBtn
           className={tw`flex flex-col space-y-4 md:(flex-row space-y-0 space-x-4) w-full`}
         >
-          <div tw= "grid gap-4 w-full sm:grid-cols-2 md:flex">
-            <SearchBar />
-            <FilterBox label="Status" dropdownData={dropdownData} />
+          <div tw="grid gap-4 w-full sm:grid-cols-2 md:flex w-full">
+            <FilterBox label="Showing" dropdownData={dropdownData} />
+            <FilterBox label="Status" dropdownData={StatusdropdownData} />
+            <FilterBox label="Transaction" dropdownData={dropdownData} />
           </div>
+          <DatRangePickerAndOthers />
         </DataGridViewTemp>
 
         {/* View modal */}
@@ -265,23 +294,70 @@ const TransactionsDashboard = () => {
           </div>
         </Modal>
       </section>
+
+      {/* Print */}
+      <div tw="hidden">
+        <Receipt ref={componentRef} />
+      </div>
     </Layout>
   )
 }
 
-// FIXME: Temp data (should be replaced with real data)
+const StatusdropdownData = [
+  {
+    value: 'all',
+    label: 'All',
+  },
+  {
+    value: 'pending',
+    label: 'Pending',
+  },
+  {
+    value: 'complete',
+    label: 'Complete',
+  },
+]
+
 const dropdownData = [
   {
     value: 'all',
     label: 'All',
   },
   {
-    value: 'user',
-    label: 'User',
+    value: 'pos withdrawal',
+    label: 'POS Withdrawal',
   },
   {
-    value: 'admin',
-    label: 'Admin',
+    value: 'wallet history',
+    label: 'Wallet History',
+  },
+  {
+    value: 'Transfer',
+    label: 'Transfer',
+  },
+  {
+    value: 'Airtime',
+    label: 'Airtime',
+  },
+  {
+    value: 'Data',
+    label: 'Data',
+  },
+  {
+    value: 'TV Subscription',
+    label: 'TV Subscription',
+  },
+  {
+    value: 'Electricity',
+    label: 'Electricity',
+  },
+  {
+    value: 'tax',
+    label: 'Tax',
+  },
+  {
+    value: 'Internet',
+    label: 'Internet',
   },
 ]
 
