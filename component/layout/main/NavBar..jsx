@@ -119,6 +119,6 @@ const Title2 = tw.h5`text-sm lg:hidden mt-2`
 const AuthWrapper = tw.div`flex items-center space-x-4 text-paysure-primary-100`
 const Button = tw.button`normal-case text-paysure-primary-100 text-sm hover:(underline)`
 const Button1 = tw(Button)`hidden lg:block text-dark`
-const Button2 = tw(Button)`lg:hidden mt-2`
+const Button2 = tw(Button)`lg:hidden mt-2 text-dark`
 
 export default NavBar_main_layout
