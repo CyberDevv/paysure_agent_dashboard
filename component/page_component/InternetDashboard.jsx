@@ -60,6 +60,20 @@ const InternetDashboard = () => {
     },
     {
       field: 'col2',
+      headerName: 'Transaction Type',
+      minWidth: 227,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col3',
+      headerName: 'Phone Number',
+      minWidth: 140,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col4',
       headerName: 'Amount',
       minWidth: 227,
       flex: 1,
@@ -67,7 +81,7 @@ const InternetDashboard = () => {
       renderCell: params => {
         return (
           <CurrencyFormat
-            value={params.row.col2}
+            value={params.row.col4}
             displayType={'text'}
             thousandSeparator={true}
             prefix={'₦'}
@@ -76,42 +90,52 @@ const InternetDashboard = () => {
       },
     },
     {
-      field: 'col3',
-      headerName: 'Type',
-      minWidth: 140,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
-      field: 'col4',
-      headerName: 'Identifier',
+      field: 'col5',
+      headerName: 'Operator',
       minWidth: 126,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col5',
-      headerName: 'Percentage',
+      field: 'col6',
+      headerName: 'Charge',
+      minWidth: 139,
+      flex: 1,
+      headerClassName: 'grid-header',
+      renderCell: params => {
+        return (
+          <CurrencyFormat
+            value={params.row.col7}
+            displayType={'text'}
+            thousandSeparator={true}
+            prefix={'₦'}
+          />
+        )
+      },
+    },
+    {
+      field: 'col7',
+      headerName: 'Data Plan',
       minWidth: 101,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col6',
+      field: 'col8',
       headerName: 'Status',
-      minWidth: 139,
+      minWidth: 101,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col7',
+      field: 'col9',
       headerName: 'Date',
       minWidth: 144,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col8',
+      field: 'col10',
       headerName: 'Action',
       minWidth: 100,
       flex: 1,
@@ -173,7 +197,7 @@ const InternetDashboard = () => {
           link="/settlements/transactionsList"
           limited
           title="Transaction Records"
-          rows={rows}
+          rows={[]}
           columns={columns}
           hasExportBtn
           className={tw`grid sm:grid-template-columns[auto] gap-4 w-full xl:(grid-cols-2)`}

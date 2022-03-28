@@ -21,7 +21,9 @@ const ElectricityDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
 
   // functions
-  const handleBuyElectricity = React.useCallback(() => setIsAddmodalOpened(true))
+  const handleBuyElectricity = React.useCallback(() =>
+    setIsAddmodalOpened(true),
+  )
 
   // array of agent page stats
   const agentPageData = [
@@ -60,6 +62,20 @@ const ElectricityDashboard = () => {
     },
     {
       field: 'col2',
+      headerName: 'Transaction Type',
+      minWidth: 227,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col3',
+      headerName: 'Contract',
+      minWidth: 140,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col4',
       headerName: 'Amount',
       minWidth: 227,
       flex: 1,
@@ -67,7 +83,7 @@ const ElectricityDashboard = () => {
       renderCell: params => {
         return (
           <CurrencyFormat
-            value={params.row.col2}
+            value={params.row.col4}
             displayType={'text'}
             thousandSeparator={true}
             prefix={'₦'}
@@ -76,42 +92,52 @@ const ElectricityDashboard = () => {
       },
     },
     {
-      field: 'col3',
-      headerName: 'Type',
-      minWidth: 140,
+      field: 'col5',
+      headerName: 'Charge',
+      minWidth: 139,
       flex: 1,
       headerClassName: 'grid-header',
+      renderCell: params => {
+        return (
+          <CurrencyFormat
+            value={params.row.col7}
+            displayType={'text'}
+            thousandSeparator={true}
+            prefix={'₦'}
+          />
+        )
+      },
     },
     {
-      field: 'col4',
-      headerName: 'Identifier',
+      field: 'col6',
+      headerName: 'Electricity Board',
       minWidth: 126,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col5',
-      headerName: 'Percentage',
+      field: 'col7',
+      headerName: 'Status',
       minWidth: 101,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col6',
-      headerName: 'Status',
-      minWidth: 139,
+      field: 'col8',
+      headerName: 'Meter Number',
+      minWidth: 161,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col7',
+      field: 'col9',
       headerName: 'Date',
       minWidth: 144,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col8',
+      field: 'col10',
       headerName: 'Action',
       minWidth: 100,
       flex: 1,
@@ -173,7 +199,7 @@ const ElectricityDashboard = () => {
           link="/settlements/transactionsList"
           limited
           title="Transaction Records"
-          rows={rows}
+          rows={[]}
           columns={columns}
           hasExportBtn
           className={tw`grid sm:grid-template-columns[auto] gap-4 w-full xl:(grid-cols-2)`}

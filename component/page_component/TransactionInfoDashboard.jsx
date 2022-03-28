@@ -74,7 +74,7 @@ const TransactionInfoDashboard = () => {
         </ButtonWrapper>
       </Header>
 
-      <div tw= "lg:(grid grid-cols-2 gap-8)">
+      <div tw="lg:(grid grid-cols-2 gap-8)">
         {/* Transaction information */}
         <UserInfoWrapper>
           <Title className="font-500">Transaction Information</Title>
@@ -143,7 +143,7 @@ const TransactionInfoDashboard = () => {
       {/* DataGrid */}
       <DataGridViewTemp
         title={`Settlements`}
-        rows={rows}
+        rows={[]}
         columns={columns}
         hasMT
       />

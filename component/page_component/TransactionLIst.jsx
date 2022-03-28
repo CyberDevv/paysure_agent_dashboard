@@ -12,7 +12,7 @@ const TransactionLIst = () => {
       <section>
         <DataGridViewTemp
           title="Transaction Records"
-          rows={rows}
+          rows={[]}
           columns={columns}
           dropdownData={dropdownData}
           hasSearch

@@ -50,109 +50,116 @@ const TaxDashboard = () => {
     },
   ]
 
-  const columns = [
-    {
-      field: 'col1',
-      headerName: 'S/N',
-      minWidth: 71,
-      flex: 1,
-      headerClassName: 'grid-header',
+const columns = [
+  {
+    field: 'col1',
+    headerName: 'S/N',
+    minWidth: 71,
+    flex: 1,
+    headerClassName: 'grid-header',
+  },
+  {
+    field: 'col2',
+    headerName: 'Transaction Type',
+    minWidth: 227,
+    flex: 1,
+    headerClassName: 'grid-header',
+  },
+  {
+    field: 'col3',
+    headerName: 'Tax Type',
+    minWidth: 140,
+    flex: 1,
+    headerClassName: 'grid-header',
+  },
+  {
+    field: 'col4',
+    headerName: 'Amount',
+    minWidth: 227,
+    flex: 1,
+    headerClassName: 'grid-header',
+    renderCell: params => {
+      return (
+        <CurrencyFormat
+          value={params.row.col4}
+          displayType={'text'}
+          thousandSeparator={true}
+          prefix={'₦'}
+        />
+      )
     },
-    {
-      field: 'col2',
-      headerName: 'Amount',
-      minWidth: 227,
-      flex: 1,
-      headerClassName: 'grid-header',
-      renderCell: params => {
-        return (
-          <CurrencyFormat
-            value={params.row.col2}
-            displayType={'text'}
-            thousandSeparator={true}
-            prefix={'₦'}
-          />
-        )
-      },
-    },
-    {
-      field: 'col3',
-      headerName: 'Type',
-      minWidth: 140,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
-      field: 'col4',
-      headerName: 'Identifier',
-      minWidth: 126,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
-      field: 'col5',
-      headerName: 'Percentage',
-      minWidth: 101,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
-      field: 'col6',
-      headerName: 'Status',
-      minWidth: 139,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
-      field: 'col7',
-      headerName: 'Date',
-      minWidth: 144,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
-      field: 'col8',
-      headerName: 'Action',
-      minWidth: 100,
-      flex: 1,
-      sortable: false,
-      headerClassName: 'grid-header',
+  },
+  {
+    field: 'col5',
+    headerName: 'Full Name',
+    minWidth: 126,
+    flex: 1,
+    headerClassName: 'grid-header',
+  },
+  {
+    field: 'col6',
+    headerName: 'Revenue Head',
+    minWidth: 126,
+    flex: 1,
+    headerClassName: 'grid-header',
+  },
+  {
+    field: 'col7',
+    headerName: 'Status',
+    minWidth: 101,
+    flex: 1,
+    headerClassName: 'grid-header',
+  },
+  {
+    field: 'col8',
+    headerName: 'Date',
+    minWidth: 144,
+    flex: 1,
+    headerClassName: 'grid-header',
+  },
+  {
+    field: 'col9',
+    headerName: 'Action',
+    minWidth: 100,
+    flex: 1,
+    sortable: false,
+    headerClassName: 'grid-header',
 
-      renderCell: params => {
-        const handleEdit = () => {
-          console.log('edit')
-        }
+    renderCell: params => {
+      const handleEdit = () => {
+        console.log('edit')
+      }
 
-        const handleView = e => {
-          setModalView(true)
+      const handleView = e => {
+        setModalView(true)
 
-          // const api = params.api
-          // const thisRow = {}
+        // const api = params.api
+        // const thisRow = {}
 
-          // api
-          //   .getAllColumns()
-          //   .filter(c => c.field !== '__check__' && !!c)
-          //   .forEach(
-          //     c => (thisRow[c.field] = params.getValue(params.id, c.field)),
-          //   )
+        // api
+        //   .getAllColumns()
+        //   .filter(c => c.field !== '__check__' && !!c)
+        //   .forEach(
+        //     c => (thisRow[c.field] = params.getValue(params.id, c.field)),
+        //   )
 
-          // Router.push(`/transactions/${thisRow.col1}`)
-        }
+        // Router.push(`/transactions/${thisRow.col1}`)
+      }
 
-        return (
-          <div tw="space-x-1">
-            <button onClick={handleView}>
-              <ViewActionSVG />
-            </button>
+      return (
+        <div tw="space-x-1">
+          <button onClick={handleView}>
+            <ViewActionSVG />
+          </button>
 
-            <button onClick={handleView}>
-              <Print />
-            </button>
-          </div>
-        )
-      },
+          <button onClick={handleView}>
+            <Print />
+          </button>
+        </div>
+      )
     },
-  ]
+  },
+]
 
   return (
     <Layout goBack>
@@ -173,7 +180,7 @@ const TaxDashboard = () => {
           link="/settlements/transactionsList"
           limited
           title="Transaction Records"
-          rows={rows}
+          rows={[]}
           columns={columns}
           hasExportBtn
           className={tw`grid sm:grid-template-columns[auto] gap-4 w-full xl:(grid-cols-2)`}
@@ -235,33 +242,6 @@ const TaxDashboard = () => {
     </Layout>
   )
 }
-
-const typedropdownData = [
-  {
-    value: 'all',
-    label: 'All',
-  },
-  {
-    value: 'pending',
-    label: 'Pending',
-  },
-  {
-    value: 'failed',
-    label: 'Failed',
-  },
-  {
-    value: 'deposit transfer',
-    label: 'Deposit Transfer',
-  },
-  {
-    value: 'unknown/pending',
-    label: 'Unknown/Pending',
-  },
-  {
-    value: 'income settlements',
-    label: 'Income Settlements',
-  },
-]
 
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [

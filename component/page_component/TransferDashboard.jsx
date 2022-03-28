@@ -60,14 +60,63 @@ const TransferDashboard = () => {
     },
     {
       field: 'col2',
-      headerName: 'Amount',
+      headerName: 'Transaction Type',
       minWidth: 227,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col3',
+      headerName: 'Wallet ID',
+      minWidth: 140,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col4',
+      headerName: 'Wallet Bank Name',
+      minWidth: 227,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col5',
+      headerName: 'Session ID',
+      minWidth: 126,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col6',
+      headerName: 'Beneficiary Bank',
+      minWidth: 181,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col7',
+      headerName: 'Beneficiary Name',
+      minWidth: 201,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col8',
+      headerName: 'Beneficiary Account No.',
+      minWidth: 101,
+      flex: 1,
+      headerClassName: 'grid-header',
+    },
+    {
+      field: 'col9',
+      headerName: 'Charge',
+      minWidth: 109,
       flex: 1,
       headerClassName: 'grid-header',
       renderCell: params => {
         return (
           <CurrencyFormat
-            value={params.row.col2}
+            value={params.row.col7}
             displayType={'text'}
             thousandSeparator={true}
             prefix={'₦'}
@@ -76,42 +125,35 @@ const TransferDashboard = () => {
       },
     },
     {
-      field: 'col3',
-      headerName: 'Type',
-      minWidth: 140,
+      field: 'col10',
+      headerName: 'Tsq. Res. Code',
+      minWidth: 201,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col4',
-      headerName: 'Identifier',
-      minWidth: 126,
+      field: 'col11',
+      headerName: 'Tsq. Res. Msg.',
+      minWidth: 201,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col5',
-      headerName: 'Percentage',
-      minWidth: 101,
-      flex: 1,
-      headerClassName: 'grid-header',
-    },
-    {
-      field: 'col6',
+      field: 'col12',
       headerName: 'Status',
-      minWidth: 139,
+      minWidth: 104,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col7',
-      headerName: 'Date',
-      minWidth: 144,
+      field: 'col13',
+      headerName: 'Date, Time',
+      minWidth: 141,
       flex: 1,
       headerClassName: 'grid-header',
     },
     {
-      field: 'col8',
+      field: 'col14',
       headerName: 'Action',
       minWidth: 100,
       flex: 1,
@@ -173,7 +215,7 @@ const TransferDashboard = () => {
           link="/settlements/transactionsList"
           limited
           title="Transaction Records"
-          rows={rows}
+          rows={[]}
           columns={columns}
           hasExportBtn
           className={tw`grid sm:grid-template-columns[auto] gap-4 w-full xl:(grid-cols-2)`}
@@ -235,33 +277,6 @@ const TransferDashboard = () => {
     </Layout>
   )
 }
-
-const typedropdownData = [
-  {
-    value: 'all',
-    label: 'All',
-  },
-  {
-    value: 'pending',
-    label: 'Pending',
-  },
-  {
-    value: 'failed',
-    label: 'Failed',
-  },
-  {
-    value: 'deposit transfer',
-    label: 'Deposit Transfer',
-  },
-  {
-    value: 'unknown/pending',
-    label: 'Unknown/Pending',
-  },
-  {
-    value: 'income settlements',
-    label: 'Income Settlements',
-  },
-]
 
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [

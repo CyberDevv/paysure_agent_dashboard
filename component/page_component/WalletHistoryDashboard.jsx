@@ -11,7 +11,7 @@ const WalletHistory = () => {
       <section>
         <DataGridViewTemp
           title="Wallet History"
-          rows={rows}
+          rows={[]}
           columns={columns}
           StatusDropdownData={dropdownData}
           hasFilterStatus

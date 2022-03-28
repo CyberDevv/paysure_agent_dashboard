@@ -34,7 +34,7 @@ const DataGridViewTemp = ({
         )}
       </div>
       <DataGridView
-        rows={rows}
+        rows={[]}
         columns={columns}
         limited={limited}
         hasExportBtn={hasExportBtn}
