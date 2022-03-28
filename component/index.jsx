@@ -34,6 +34,7 @@ export { default as TransferDashboard } from './page_component/TransferDashboard
 export { default as InternetDashboard } from './page_component/InternetDashboard'
 export { default as ForgotPassword } from './page_component/ForgotPasswordDashboard'
 export { default as BuyAirtimeDashboard } from './page_component/BuyAirtimeDashboard'
+export { default as BuyInternetDashboard } from './page_component/BuyInternetDashboard'
 export { default as BillPaymentDashboard } from './page_component/BillPaymentDashboard'
 export { default as ElectricityDashboard } from './page_component/ElectricityDashboard'
 export { default as SettlementsDashboard } from './page_component/SettlementsDashboard'
