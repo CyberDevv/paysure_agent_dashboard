@@ -16,22 +16,29 @@ const BuyAirtimeDashboard = ({ title, children, infoState, confirmState }) => {
     <>
       <SectionsWrapper>
         {/* Section 1 */}
-        <aside css={[tw`mt-4  w-full lg:(max-w-sm mt-8)`]}>
+        <aside css={[tw`mt-4  w-full lg:(max-w-[200px] mt-8) 2xl:(max-w-sm)`]}>
           <div>
-            <button onClick={handleGoBack} tw="text-dark text-[13px] cursor-pointer ">
+            <button
+              onClick={handleGoBack}
+              tw="text-dark text-[13px] cursor-pointer "
+            >
               {<ArrowBack />} Back
             </button>
             <Ttile className="font-bold">{title}</Ttile>
           </div>
 
           {/* Steps indicatior */}
-          <div tw="mt-8 flex space-x-8 items-center justify-center lg:(block space-y-8 space-x-0)">
-            <p tw="pr-3 text-[13px]">
-              <i tw="mr-4">{infoState ? <Verified /> : <UnVerified />}</i>
+          <div tw="mt-4 lg:mt-8 flex space-x-4 items-center justify-center lg:(block space-y-8 space-x-0)">
+            <p tw="lg:pr-3 text-[13px]">
+              <i tw="mr-2 md:mr-4">
+                {infoState ? <Verified /> : <UnVerified />}
+              </i>
               Enter Information
             </p>
-            <p tw="pr-3 text-[13px]">
-              <i tw="mr-4">{confirmState ? <Verified /> : <UnVerified />}</i>
+            <p tw="lg:pr-3 text-[13px]">
+              <i tw="mr-2 md:mr-4">
+                {confirmState ? <Verified /> : <UnVerified />}
+              </i>
               Confirm Transaction
             </p>
           </div>
@@ -41,8 +48,8 @@ const BuyAirtimeDashboard = ({ title, children, infoState, confirmState }) => {
         <Divider css={[tw`hidden lg:block`]} orientation="vertical" flexItem />
 
         {/* sections 2 */}
-        <div css={[tw`w-full mt-16 lg:(flex justify-center) xl:mt-8`]}>
-          {children}
+        <div css={[tw`w-full mt-8 lg:px-8 flex justify-center xl:mt-8`]}>
+          <div tw="max-w-sm lg:(flex justify-center)">{children}</div>
         </div>
 
         <Divider css={[tw`hidden lg:block`]} orientation="vertical" flexItem />
@@ -50,7 +57,7 @@ const BuyAirtimeDashboard = ({ title, children, infoState, confirmState }) => {
         {/* Section 3 */}
         <aside
           css={[
-            tw`mt-16 w-full lg:(max-w-[240px]) divide-y-2 divide-[#EBF2FA]`,
+            tw`mt-8 lg:mt-16 w-full lg:(max-w-[200px]) xl:(max-w-[240px]) divide-y-2 divide-[#EBF2FA]`,
           ]}
         >
           <SponoredAd
@@ -75,13 +82,13 @@ const BuyAirtimeDashboard = ({ title, children, infoState, confirmState }) => {
 
 const SponoredAd = ({ label, description, btnLabel, btn }) => {
   return (
-    <div tw="flex flex-col items-center justify-center py-10 px-5 text-center">
+    <div tw="flex flex-col items-center justify-center py-8 xl:py-10 px-5 text-center">
       {/* Avatar */}
       <div tw="w-16 h-16 bg-[#E4ECF7] rounded-full"></div>
 
       {/* Text */}
       <div tw="mt-4">
-        <p tw="text-light-dark tracking-[-0.025em]" className="font-500">
+        <p tw="text-light-dark tracking-[-0.025em] text-sm xl:text-base" className="font-500">
           {label}
         </p>
         {description && (

@@ -204,9 +204,9 @@ const TransactionsDashboard = () => {
           rows={[]}
           columns={columns}
           hasExportBtn
-          className={tw`flex flex-col space-y-4 md:(flex-row space-y-0 space-x-4) w-full`}
+          className={tw`flex flex-col space-y-4 sm:(grid grid-cols-2) 2xl:(flex flex-row space-y-0 space-x-4) w-full`}
         >
-          <div tw="grid gap-4 w-full sm:grid-cols-2 md:flex w-full">
+          <div tw="grid gap-4 sm:(col-span-2) md:(grid-cols-3) 2xl:(flex) w-full">
             <FilterBox label="Showing" dropdownData={dropdownData} />
             <FilterBox label="Status" dropdownData={StatusdropdownData} />
             <FilterBox label="Transaction" dropdownData={dropdownData} />

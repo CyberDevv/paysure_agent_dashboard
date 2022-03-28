@@ -181,10 +181,12 @@ const AgentDashboard = () => {
         title="Terminals"
         rows={[]}
         columns={Terminalcolumns}
-        className={tw`space-y-4 md:(flex space-y-0 space-x-4)`}
+        className={tw`space-y-4 xl:(flex space-y-0 space-x-4)`}
       >
-        <SearchBar />
-        <FilterBox label="Transaction Type" dropdownData={dropdownData} />
+        <div tw="space-y-4 md:(flex space-y-0 space-x-4) w-full">
+          <SearchBar />
+          <FilterBox label="Transaction Type" dropdownData={dropdownData} />
+        </div>
         <DatRangePickerAndOthers />
       </DataGridViewTemp>
 
@@ -194,10 +196,12 @@ const AgentDashboard = () => {
         title="Settlements"
         rows={[]}
         columns={Settlementcolumns}
-        className={tw`space-y-4 md:(flex space-y-0 space-x-4)`}
+        className={tw`space-y-4 xl:(flex space-y-0 space-x-4)`}
       >
-        <SearchBar />
-        <FilterBox label="Transaction Type" dropdownData={dropdownData} />
+        <div tw="space-y-4 md:(flex space-y-0 space-x-4) w-full">
+          <SearchBar />
+          <FilterBox label="Transaction Type" dropdownData={dropdownData} />
+        </div>
         <DatRangePickerAndOthers />
       </DataGridViewTemp>
     </Layout>

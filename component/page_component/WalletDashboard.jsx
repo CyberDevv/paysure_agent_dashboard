@@ -1,11 +1,18 @@
 import React from 'react'
 import tw from 'twin.macro'
-import { Button } from '@mui/material'
+import { Button, IconButton, Menu, MenuItem } from '@mui/material'
 import OtpInput from 'react-otp-input'
 import CurrencyFormat from 'react-currency-format'
 
-import { Layout, Modal, Label, DataGridViewTemp, DatRangePickerAndOthers, FilterBox } from '..'
-import { Print, SuccessfulSVG, ViewActionSVG } from '../SVGIcons'
+import {
+  Layout,
+  Modal,
+  Label,
+  DataGridViewTemp,
+  DatRangePickerAndOthers,
+  FilterBox,
+} from '..'
+import { EllipsisSVG, Print, SuccessfulSVG, ViewActionSVG } from '../SVGIcons'
 
 const WalletsDashboard = () => {
   // useState hook
@@ -21,6 +28,16 @@ const WalletsDashboard = () => {
     'Fund Wallet',
     'Continue',
   ])
+  const [anchorEl, setAnchorEl] = React.useState(null)
+
+  const open = Boolean(anchorEl)
+
+  const handleBtnMenuShown = event => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   // functions
   const handSetIsModalOpened = React.useCallback(() => {
@@ -86,7 +103,8 @@ const WalletsDashboard = () => {
             </Amount>
           </div>
 
-          <div tw="space-x-4 lg:(space-x-7)">
+          {/* Buttons */}
+          <div tw="hidden space-x-4 md:block lg:( space-x-7)">
             <MUIButton tw="lg:(px-14)" onClick={handSetIsModalOpened}>
               Fund Wallet
             </MUIButton>
@@ -96,6 +114,37 @@ const WalletsDashboard = () => {
             >
               Withdraw
             </MUIButton>
+          </div>
+
+          {/* Mobile buttons */}
+          <div tw="md:hidden">
+            <IconButton
+              id="basic-button"
+              aria-controls={open ? 'Btnmenu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleBtnMenuShown}
+            >
+              <EllipsisSVG />
+            </IconButton>
+
+            <Menu
+              id="Btnmenu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem onClick={handSetIsModalOpened}>
+                <a>Fund Wallet</a>
+              </MenuItem>
+
+              <MenuItem onClick={handSetIsModalOpened2}>
+                <a>Withdraw</a>
+              </MenuItem>
+            </Menu>
           </div>
 
           {/* fund wallet modal */}
@@ -230,10 +279,12 @@ const WalletsDashboard = () => {
           rows={[]}
           columns={columns}
           hasExportBtn
-          className={tw`flex flex-col space-y-4 lg:(flex-row space-y-0 space-x-4) w-full`}
+          className={tw`flex flex-col space-y-4 md:(flex-row space-y-0 space-x-4) w-full`}
         >
-          <FilterBox label="Status" dropdownData={dropdownData} />
-          <DatRangePickerAndOthers />
+          {/* <div tw= "flex items-center justify-between space-x-4 w-full"> */}
+            <FilterBox label="Status" dropdownData={dropdownData} />
+            <DatRangePickerAndOthers />
+          {/* </div> */}
         </DataGridViewTemp>
       </section>
     </Layout>
