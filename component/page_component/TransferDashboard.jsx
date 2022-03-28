@@ -15,6 +15,7 @@ import {
   FilterBox,
   DatRangePickerAndOthers,
 } from '..'
+import Link from 'next/link'
 
 const TransferDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
@@ -159,8 +160,10 @@ const TransferDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Transfer</Ttile>
 
-          <MUIButton onClick={handleMakeTransfer} startIcon={<Add />}>
-            Make Transfer
+          <MUIButton startIcon={<Add />}>
+            <Link href="/billPayment/transfer/makeTransfer">
+              <a>Make Transfer</a>
+            </Link>
           </MUIButton>
         </div>
 

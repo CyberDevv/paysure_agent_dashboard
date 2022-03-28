@@ -502,8 +502,8 @@ export const Airtime = () => {
           y2="19.1668"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9424_3009"
@@ -513,8 +513,8 @@ export const Airtime = () => {
           y2="42.7914"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
       </defs>
     </SvgIcon>
@@ -550,8 +550,8 @@ export const Tax = () => {
           y2="31.2113"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_3912_37683"
@@ -561,8 +561,8 @@ export const Tax = () => {
           y2="33.3332"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
       </defs>
     </SvgIcon>
@@ -595,8 +595,8 @@ export const Data = () => {
           y2="31.6198"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9419_3087"
@@ -606,8 +606,8 @@ export const Data = () => {
           y2="45.0557"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
       </defs>
     </SvgIcon>
@@ -641,8 +641,8 @@ export const TvSubscription = () => {
           y2="31.3409"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9419_3119"
@@ -652,8 +652,8 @@ export const TvSubscription = () => {
           y2="46.6189"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
       </defs>
     </SvgIcon>
@@ -682,8 +682,8 @@ export const Electricity = () => {
           y2="16.9513"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
       </defs>
     </SvgIcon>
@@ -719,8 +719,8 @@ export const Transfer = () => {
           y2="31.2113"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_3912_37683"
@@ -730,8 +730,8 @@ export const Transfer = () => {
           y2="33.3332"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D665FF" />
-          <stop offset="1" stop-color="#4C6FFF" />
+          <stop stopColor="#D665FF" />
+          <stop offset="1" stopColor="#4C6FFF" />
         </linearGradient>
       </defs>
     </SvgIcon>
@@ -751,12 +751,12 @@ export const Internet = () => {
             <path fillRule="evenodd" clipRule="evenodd" d="M19.5596 34.9937C11.479 34.7607 5 28.137 5 20C5 19.8614 5.00188 19.7232 5.00562 19.5855C6.10388 19.6906 8.09395 19.929 8.18771 20.7007C8.31749 21.7682 8.18771 23.1027 9.09674 23.503C10.0058 23.9032 10.2655 21.9016 11.0446 22.4354C11.8236 22.9693 13.9014 23.4832 13.9014 24.427C13.9014 25.3707 13.5119 26.8391 13.9014 27.106C14.291 27.373 15.8483 29.2411 15.8487 29.508C15.8493 29.7749 16.3976 31.1323 16.234 31.6511C16.0984 32.0812 15.4143 33.4169 14.751 34.0243C16.2553 34.6034 17.8726 34.943 19.5596 34.9934V34.9937ZM13.8046 6.3352C15.6931 5.47761 17.7908 5 20 5C25.8524 5 30.922 8.35162 33.3941 13.2401C33.4494 14.5402 33.4397 15.6523 33.7269 16.0546C35.1887 18.1001 30.1659 19.5072 30.9289 22.6009C31.2649 23.9658 27.588 23.5328 26.69 24.8107C25.7913 26.0879 23.5958 25.2297 23.0867 24.9842C22.5776 24.7386 20.6277 25.5569 20.7982 24.1659C20.9676 22.7744 22.1538 22.6927 23.4259 22.1199C24.6975 21.5478 26.5315 19.6453 25.6303 19.3967C21.3872 18.2271 19.9396 14.1309 19.9396 14.1309C19.6851 14.0817 19.749 11.2352 18.6473 11.1535C17.5446 11.0713 16.9508 11.4807 15.3406 11.1535C13.7294 10.8262 14.0691 9.76239 13.8145 7.47093C13.7576 6.95693 13.7603 6.59528 13.8046 6.3352ZM34.9986 19.7951C34.9995 19.8633 35 19.9316 35 20C35 28.2345 28.3647 34.9192 20.1492 34.9993C28.2837 34.9172 34.8895 28.1474 34.9986 19.7951Z" fill="url(#paint1_linear_3912_37689)"/>
             <defs>
             <linearGradient id="paint0_linear_3912_37689" x1="35" y1="5" x2="5" y2="35" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#D665FF"/>
-            <stop offset="1" stop-color="#4C6FFF"/>
+            <stop stopColor="#D665FF"/>
+            <stop offset="1" stopColor="#4C6FFF"/>
             </linearGradient>
             <linearGradient id="paint1_linear_3912_37689" x1="35" y1="5" x2="5.00073" y2="35" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#D665FF"/>
-            <stop offset="1" stop-color="#4C6FFF"/>
+            <stop stopColor="#D665FF"/>
+            <stop offset="1" stopColor="#4C6FFF"/>
             </linearGradient>
             </defs>
     </SvgIcon>
