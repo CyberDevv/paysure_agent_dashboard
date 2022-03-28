@@ -15,6 +15,7 @@ import {
   FilterBox,
   DatRangePickerAndOthers,
 } from '..'
+import Link from 'next/link'
 
 const TaxDashboard = () => {
   const [modalView, setModalView] = React.useState(false)
@@ -159,8 +160,10 @@ const TaxDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Tax</Ttile>
 
-          <MUIButton onClick={handlePayTax} startIcon={<Add />}>
-            Pay Tax
+          <MUIButton startIcon={<Add />}>
+            <Link href="/billPayment/tax/payTax">
+              <a>Pay Tax</a>
+            </Link>
           </MUIButton>
         </div>
 
