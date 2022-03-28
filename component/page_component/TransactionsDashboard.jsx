@@ -201,7 +201,7 @@ const TransactionsDashboard = () => {
         </div>
 
         <DataGridViewTemp
-          rows={rows}
+          rows={[]}
           columns={columns}
           hasExportBtn
           className={tw`flex flex-col space-y-4 md:(flex-row space-y-0 space-x-4) w-full`}

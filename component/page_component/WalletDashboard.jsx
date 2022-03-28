@@ -227,7 +227,7 @@ const WalletsDashboard = () => {
           link="/wallet/walletHistory"
           limited
           title="Wallet History"
-          rows={rows}
+          rows={[]}
           columns={columns}
           hasExportBtn
           className={tw`flex flex-col space-y-4 lg:(flex-row space-y-0 space-x-4) w-full`}
