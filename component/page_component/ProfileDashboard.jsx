@@ -1,20 +1,13 @@
 import React from 'react'
 import tw from 'twin.macro'
-import {
-  Button,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  IconButton,
-  Menu,
-  MenuItem,
-} from '@mui/material'
+import { Button, IconButton, Menu, MenuItem } from '@mui/material'
 
 import {
   EditActionSVG,
   EllipsisSVG,
   UserProfileSVG,
   UserWithNegative,
+  UserWithPositive,
   Wallet,
 } from '../SVGIcons'
 import {
@@ -23,6 +16,9 @@ import {
   Layout,
   Modal,
   NumberFormatter,
+  SearchBar,
+  FilterBox,
+  DatRangePickerAndOthers,
 } from '..'
 import CurrencyFormat from 'react-currency-format'
 import Link from 'next/link'
@@ -116,7 +112,7 @@ const AgentDashboard = () => {
       {/* Transactions */}
       <OverViewCardTemp
         btnLabel="See all activities"
-        link="/agents/1/transactionsList"
+        link="/transactions"
         title="Transactions"
         data={agencyOveriewData}
       />
@@ -183,26 +179,27 @@ const AgentDashboard = () => {
       <DataGridViewTemp
         hasMT
         title="Terminals"
-        rows={rows}
+        rows={[]}
         columns={Terminalcolumns}
-        dropdownData={dropdownData}
-        hasFilter="Transaction Type"
-        hasSort
-        hasFilterShowing
-        showingDropdownData={dropdownData}
-      />
+        className={tw`space-y-4 md:(flex space-y-0 space-x-4)`}
+      >
+        <SearchBar />
+        <FilterBox label="Transaction Type" dropdownData={dropdownData} />
+        <DatRangePickerAndOthers />
+      </DataGridViewTemp>
+
       {/* DataGrid */}
       <DataGridViewTemp
         limited
         title="Settlements"
-        rows={rows}
+        rows={[]}
         columns={Settlementcolumns}
-        dropdownData={dropdownData}
-        hasFilter="Transaction Type"
-        hasSort
-        hasFilterShowing
-        showingDropdownData={dropdownData}
-      />
+        className={tw`space-y-4 md:(flex space-y-0 space-x-4)`}
+      >
+        <SearchBar />
+        <FilterBox label="Transaction Type" dropdownData={dropdownData} />
+        <DatRangePickerAndOthers />
+      </DataGridViewTemp>
     </Layout>
   )
 }
@@ -280,7 +277,7 @@ const rows = [
     col4: 1,
     col5: 4243,
     col6: '443943043',
-    col7: '443943043',
+    col7: 'inactive',
     col8: '7013',
     col9: 'Dec 30, 2018 05:12',
     col10: '',
@@ -293,7 +290,7 @@ const rows = [
     col4: 1,
     col5: 4243,
     col6: '443943043',
-    col7: '443943043',
+    col7: 'active',
     col8: '7013',
     col9: 'Dec 30, 2018 05:12',
     col10: '',
@@ -393,7 +390,7 @@ const Terminalcolumns = [
     },
   },
   {
-    field: 'col10',
+    field: 'col7',
     headerName: 'Status',
     minWidth: 123,
     flex: 1,
@@ -422,7 +419,7 @@ const Terminalcolumns = [
     disableClickEventBubbling: true,
   },
   {
-    field: 'col11',
+    field: 'col9',
     headerName: 'Action',
     minWidth: 100,
     flex: 1,
@@ -452,13 +449,13 @@ const Terminalcolumns = [
             <EditActionSVG />
           </button>
 
-          {params.row.col8.toLowerCase() === 'active' && (
+          {params.row.col7.toLowerCase() === 'active' && (
             <button onClick={handleView}>
               <UserWithNegative />
             </button>
           )}
 
-          {params.row.col8.toLowerCase() === 'inactive' && (
+          {params.row.col7.toLowerCase() === 'inactive' && (
             <button onClick={handleView}>
               <UserWithPositive />
             </button>

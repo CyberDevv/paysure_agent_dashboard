@@ -83,9 +83,7 @@ const ProfileInformation = () => {
 
         <div>
           <MUIButton>
-            <Link href="/setUpPassword">
-              <a tw="w-full py-3">Sign up</a>
-            </Link>
+            Save Changes
           </MUIButton>
         </div>
       </Form>
@@ -98,6 +96,6 @@ const H1 = tw.h3`text-black tracking-[-0.025em] leading-[29px]`
 const Form = tw.form`mt-5 space-y-5 lg:(max-w-[308px] mt-10)`
 const MUIButton = tw(
   Button,
-)`w-full bg-paysure-primary-100 text-white normal-case transition-all rounded-xl text-sm hover:(bg-paysure-primary-100 brightness-90) mt-10`
+)`w-full bg-paysure-primary-100 text-white normal-case py-4 transition-all rounded-xl text-sm hover:(bg-paysure-primary-100 brightness-90) mt-10`
 
 export default ProfileInformation
