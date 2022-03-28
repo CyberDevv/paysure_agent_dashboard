@@ -184,7 +184,7 @@ const AirtimeDashboard = () => {
         <HomeDisplayCard data={agentPageData} />
 
         <DataGridViewTemp
-          link="/settlements/transactionsList"
+          link="/billPayment/airtime/transactionsList"
           limited
           title="Transaction Records"
           rows={[]}

@@ -177,7 +177,7 @@ const columns = [
         <HomeDisplayCard data={agentPageData} />
 
         <DataGridViewTemp
-          link="/settlements/transactionsList"
+          link="/billPayment/tax/transactionList"
           limited
           title="Transaction Records"
           rows={[]}

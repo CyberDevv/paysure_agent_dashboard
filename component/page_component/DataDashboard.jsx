@@ -204,7 +204,7 @@ const DataDashboard = () => {
         <HomeDisplayCard data={agentPageData} />
 
         <DataGridViewTemp
-          link="/settlements/transactionsList"
+          link="/billPayment/data/transactionList"
           limited
           title="Transaction Records"
           rows={[]}

@@ -196,7 +196,7 @@ const TvSubscriptionDashboard = () => {
         <HomeDisplayCard data={agentPageData} />
 
         <DataGridViewTemp
-          link="/settlements/transactionsList"
+          link="/billPayment/tvSubscription/transactionList"
           limited
           title="Transaction Records"
           rows={[]}

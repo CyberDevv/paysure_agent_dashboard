@@ -212,7 +212,7 @@ const TransferDashboard = () => {
         <HomeDisplayCard data={agentPageData} />
 
         <DataGridViewTemp
-          link="/settlements/transactionsList"
+          link="/billPayment/transfer/transactionList"
           limited
           title="Transaction Records"
           rows={[]}

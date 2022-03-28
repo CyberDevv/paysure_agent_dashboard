@@ -196,7 +196,7 @@ const ElectricityDashboard = () => {
         <HomeDisplayCard data={agentPageData} />
 
         <DataGridViewTemp
-          link="/settlements/transactionsList"
+          link="/billPayment/electricity/transactionList"
           limited
           title="Transaction Records"
           rows={[]}
@@ -261,33 +261,6 @@ const ElectricityDashboard = () => {
     </Layout>
   )
 }
-
-const typedropdownData = [
-  {
-    value: 'all',
-    label: 'All',
-  },
-  {
-    value: 'pending',
-    label: 'Pending',
-  },
-  {
-    value: 'failed',
-    label: 'Failed',
-  },
-  {
-    value: 'deposit transfer',
-    label: 'Deposit Transfer',
-  },
-  {
-    value: 'unknown/pending',
-    label: 'Unknown/Pending',
-  },
-  {
-    value: 'income settlements',
-    label: 'Income Settlements',
-  },
-]
 
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [
