@@ -5,7 +5,7 @@ import CurrencyFormat from 'react-currency-format'
 import { Button, Divider, FormControlLabel } from '@mui/material'
 
 import { TransactionSuccessSVG } from '../SVGIcons'
-import { Layout, PurchaseLayout, ReceiptLabel, TextField, IOSSwitch } from '..'
+import { Layout, PurchaseLayout, ReceiptLabel, TextField, Modal } from '..'
 
 const BuyTvSubscriptionDashboard = () => {
   // UseState Hooks
@@ -16,16 +16,24 @@ const BuyTvSubscriptionDashboard = () => {
   const [custormerName, setCustormerName] = React.useState('')
   const [transactionPin, setTransactionPin] = React.useState('')
   const [infoEntered, setInfoEntered] = React.useState(false)
+  const [payMethodSelected, setPayMethodSelected] = React.useState(false)
   const [confilrmTransaction, setConfilrmTransaction] = React.useState(false)
+  const [modalView, setModalView] = React.useState(false)
+
+  const handleInfoNext = () => {
+    setModalView(true)
+    setActiveTab('summary')
+  }
+
+  const handleSummaryConfirm = () => {
+    setActiveTab('paymentMethod')
+    setModalView(false)
+    setInfoEntered(true)
+  }
 
   const handleNext = () => {
-    if (activeTab === 'info') {
-      setActiveTab('confirm')
-      setInfoEntered(true)
-    } else if (activeTab === 'confirm') {
-      setActiveTab('success')
-      setConfilrmTransaction(true)
-    }
+    setActiveTab('success')
+    setConfilrmTransaction(true)
   }
 
   return (
@@ -35,45 +43,87 @@ const BuyTvSubscriptionDashboard = () => {
           title="TV Subscription"
           infoState={infoEntered}
           confirmState={confilrmTransaction}
+          payMethodSelected={payMethodSelected}
+          activeTab={activeTab}
+          // amount={amount}
+          setPayMethodSelected={setPayMethodSelected}
+          setActiveTab={setActiveTab}
         >
-          {activeTab === 'info' && (
-            <form tw="space-y-5  ">
-              <TextField
-                label="Select Operator"
-                select={['DSTV', 'GoTV', 'Startimes', 'NGTV']}
-                value={operator}
-                setValue={setOperator}
-              />
-              <TextField
-                label="Enter Decoder Number"
-                placeholder="8908901320"
-                value={decoderNumber}
-                setValue={setDecoderNumber}
-              />
-              <TextField
-                label="Customer Name"
-                placeholder="John Doe"
-                value={custormerName}
-                setValue={setCustormerName}
-              />
-              <TextField
-                label="Choose Plan"
-                select={[
-                  'Data plan gives 100Gb for N20,000',
-                  'Data plan gives 75Gb for N15,000',
-                  'Data plan gives 40Gb for N10,000',
-                  'Data plan gives 11Gb for 4,000',
-                ]}
-                value={plan}
-                setValue={setPlan}
-              />
+          {(activeTab === 'info' || activeTab === 'summary') && (
+            <>
+              <form tw="space-y-5  ">
+                <TextField
+                  label="Select Operator"
+                  select={['DSTV', 'GoTV', 'Startimes', 'NGTV']}
+                  value={operator}
+                  setValue={setOperator}
+                />
+                <TextField
+                  label="Enter Decoder Number"
+                  placeholder="8908901320"
+                  value={decoderNumber}
+                  setValue={setDecoderNumber}
+                />
+                <TextField
+                  label="Customer Name"
+                  placeholder="John Doe"
+                  value={custormerName}
+                  setValue={setCustormerName}
+                />
+                <TextField
+                  label="Choose Plan"
+                  select={[
+                    'Data plan gives 100Gb for N20,000',
+                    'Data plan gives 75Gb for N15,000',
+                    'Data plan gives 40Gb for N10,000',
+                    'Data plan gives 11Gb for 4,000',
+                  ]}
+                  value={plan}
+                  setValue={setPlan}
+                />
 
-              <div>
-                <MUIButton tw="mt-11" onClick={handleNext}>
-                  Next
-                </MUIButton>
-              </div>
-            </form>
+                <div>
+                  <MUIButton tw="mt-11" onClick={handleInfoNext}>
+                    Next
+                  </MUIButton>
+                </div>
+              </form>
+
+              {/* Summary Modal */}
+              <Modal
+                title="Summary"
+                setState={setModalView}
+                state={modalView}
+                buttonLabel="Confirm"
+                onClick={handleSummaryConfirm}
+              >
+                <h6 tw="text-center text-xs mb-10">
+                  Pleace confirm the details
+                </h6>
+
+                <div tw="grid grid-cols-2 gap-y-8 gap-x-4">
+                  <ReceiptLabel
+                    label="Amount"
+                    value={
+                      <CurrencyFormat
+                        value={97897}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        prefix={'₦'}
+                        className="font-500"
+                      />
+                    }
+                  />
+                  <ReceiptLabel
+                    label="Provider"
+                    value={operator}
+                    isRightAlgned
+                  />
+                  <ReceiptLabel label="Decoder Number" value={decoderNumber} />
+                  <ReceiptLabel label="Package" value={plan} isRightAlgned />
+                </div>
+              </Modal>
+            </>
           )}
 
           {activeTab === 'confirm' && (
