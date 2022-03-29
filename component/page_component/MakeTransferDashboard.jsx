@@ -5,7 +5,7 @@ import CurrencyFormat from 'react-currency-format'
 import { Button, Divider, FormControlLabel } from '@mui/material'
 
 import { TransactionSuccessSVG } from '../SVGIcons'
-import { Layout, PurchaseLayout, ReceiptLabel, TextField, IOSSwitch } from '..'
+import { Layout, PurchaseLayout, ReceiptLabel, TextField, IOSSwitch, Modal } from '..'
 
 const MakeTransferDashboard = () => {
   // UseState Hooks
@@ -14,18 +14,27 @@ const MakeTransferDashboard = () => {
   const [bank, setBank] = React.useState('')
   const [recipientName, setRecipientName] = React.useState('')
   const [transactionPin, setTransactionPin] = React.useState('')
+  const [amount, setAmount] = React.useState('')
   const [infoEntered, setInfoEntered] = React.useState(false)
-  const [confilrmTransaction, setConfilrmTransaction] = React.useState(false)
+    const [payMethodSelected, setPayMethodSelected] = React.useState(false)
+    const [confilrmTransaction, setConfilrmTransaction] = React.useState(false)
+    const [modalView, setModalView] = React.useState(false)
 
-  const handleNext = () => {
-    if (activeTab === 'info') {
-      setActiveTab('confirm')
+    const handleInfoNext = () => {
+      setModalView(true)
+      setActiveTab('summary')
+    }
+
+    const handleSummaryConfirm = () => {
+      setActiveTab('paymentMethod')
+      setModalView(false)
       setInfoEntered(true)
-    } else if (activeTab === 'confirm') {
+    }
+
+    const handleNext = () => {
       setActiveTab('success')
       setConfilrmTransaction(true)
     }
-  }
 
   return (
     <>
@@ -34,43 +43,91 @@ const MakeTransferDashboard = () => {
           title="Transfer"
           infoState={infoEntered}
           confirmState={confilrmTransaction}
+          payMethodSelected={payMethodSelected}
+          activeTab={activeTab}
+          amount={amount}
+          setPayMethodSelected={setPayMethodSelected}
+          setActiveTab={setActiveTab}
         >
-          {activeTab === 'info' && (
-            <form tw="space-y-5  ">
-              <TextField
-                label="Bank"
-                select={['GTBank', 'Access Bank', 'FCMB', 'Zenith Bank']}
-                value={bank}
-                setValue={setBank}
-              />
-              <TextField
-                label="Account Number"
-                placeholder="0123456789"
-                value={AccountNumber}
-                setValue={setAccountNumber}
-              />
-              <TextField
-                label="Recipient Name"
-                placeholder="John Doe"
-                value={recipientName}
-                setValue={setRecipientName}
-              />
+          {(activeTab === 'info' || activeTab === 'summary') && (
+            <>
+              <form tw="space-y-5  ">
+                <TextField
+                  label="Bank"
+                  select={['GTBank', 'Access Bank', 'FCMB', 'Zenith Bank']}
+                  value={bank}
+                  setValue={setBank}
+                />
+                <TextField
+                  label="Amount"
+                  placeholder="0123456789"
+                  value={amount}
+                  setValue={setAmount}
+                />
+                <TextField
+                  label="Account Number"
+                  placeholder="0123456789"
+                  value={AccountNumber}
+                  setValue={setAccountNumber}
+                />
+                <TextField
+                  label="Recipient Name"
+                  placeholder="John Doe"
+                  value={recipientName}
+                  setValue={setRecipientName}
+                />
 
-              <FormControlLabel
-                control={<IOSSwitch />}
-                label={<p tw="text-[13px] ml-2">Add to beneficiary</p>}
-              />
+                <FormControlLabel
+                  control={<IOSSwitch />}
+                  label={<p tw="text-[13px] ml-2">Add to beneficiary</p>}
+                />
 
-              <div tw="flex items-center justify-center flex-col space-y-12">
-                <MUIButton tw="mt-12" onClick={handleNext}>
-                  Next
-                </MUIButton>
+                <div tw="flex items-center justify-center flex-col space-y-12">
+                  <MUIButton tw="mt-12" onClick={handleInfoNext}>
+                    Next
+                  </MUIButton>
 
-                <Button tw="normal-case text-paysure-primary-100 ">
-                  Select a beneficiary
-                </Button>
-              </div>
-            </form>
+                  <Button tw="normal-case text-paysure-primary-100 ">
+                    Select a beneficiary
+                  </Button>
+                </div>
+              </form>
+
+              {/* Summary Modal */}
+              <Modal
+                title="Summary"
+                setState={setModalView}
+                state={modalView}
+                buttonLabel="Confirm"
+                onClick={handleSummaryConfirm}
+              >
+                <h6 tw="text-center text-xs mb-10">
+                  Pleace confirm the details
+                </h6>
+
+                <div tw="grid grid-cols-2 gap-y-8 gap-x-4">
+                  <ReceiptLabel
+                    label="Amount"
+                    value={
+                      <CurrencyFormat
+                        value={amount}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        prefix={'₦'}
+                        className="font-500"
+                      />
+                    }
+                  />
+                  <ReceiptLabel
+                    label="Account Number"
+                    value={AccountNumber}
+                    isRightAlgned
+                  />
+                  <ReceiptLabel label="Bank" value={bank} />
+                  <ReceiptLabel label="Account Name" value={AccountNumber} isRightAlgned />
+                </div>
+              </Modal>
+            </>
           )}
 
           {activeTab === 'confirm' && (
