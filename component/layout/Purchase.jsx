@@ -134,7 +134,7 @@ const BuyAirtimeDashboard = ({
 
                   <p tw="text-center mt-[50px] text-[32px]">
                     <CurrencyFormat
-                      value={amount}
+                      value={amount || 8000}
                       displayType={'text'}
                       thousandSeparator={true}
                       prefix={'₦'}
@@ -145,7 +145,7 @@ const BuyAirtimeDashboard = ({
                   <div tw="flex justify-center w-full py-8">
                     <div tw="flex items-center justify-center p-3 bg-[#F9F5FF] space-x-8 min-w-[222px] rounded-lg">
                       <p tw="text-paysure-primary-100">
-                        *123*4*<span>{amount}</span>#
+                        *123*4*<span>{amount || 8000}</span>#
                       </p>
                       <Button tw="normal-case text-white bg-paysure-primary-100">
                         Copy
