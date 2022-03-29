@@ -5,7 +5,14 @@ import CurrencyFormat from 'react-currency-format'
 import { Button, Divider, FormControlLabel } from '@mui/material'
 
 import { TransactionSuccessSVG } from '../SVGIcons'
-import { Layout, PurchaseLayout, ReceiptLabel, TextField, IOSSwitch } from '..'
+import {
+  Layout,
+  PurchaseLayout,
+  ReceiptLabel,
+  TextField,
+  IOSSwitch,
+  Modal,
+} from '..'
 
 const BuyAirtimeDashboard = () => {
   // UseState Hooks
@@ -15,16 +22,24 @@ const BuyAirtimeDashboard = () => {
   const [phoneNumber, setPhoneNumber] = React.useState('')
   const [transactionPin, setTransactionPin] = React.useState('')
   const [infoEntered, setInfoEntered] = React.useState(false)
+  const [payMethodSelected, setPayMethodSelected] = React.useState(false)
   const [confilrmTransaction, setConfilrmTransaction] = React.useState(false)
+  const [modalView, setModalView] = React.useState(false)
+
+  const handleInfoNext = () => {
+    setModalView(true)
+    setActiveTab('summary')
+  }
+
+  const handleSummaryConfirm = () => {
+    setActiveTab('paymentMethod')
+    setModalView(false)
+    setInfoEntered(true)
+  }
 
   const handleNext = () => {
-    if (activeTab === 'info') {
-      setActiveTab('confirm')
-      setInfoEntered(true)
-    } else if (activeTab === 'confirm') {
-      setActiveTab('success')
-      setConfilrmTransaction(true)
-    }
+    setActiveTab('success')
+    setConfilrmTransaction(true)
   }
 
   return (
@@ -34,35 +49,76 @@ const BuyAirtimeDashboard = () => {
           title="Buy Airtime"
           infoState={infoEntered}
           confirmState={confilrmTransaction}
+          payMethodSelected={payMethodSelected}
+          activeTab={activeTab}
+          amount={amount}
+          setPayMethodSelected={setPayMethodSelected}
+          setActiveTab={setActiveTab}
         >
-          {activeTab === 'info' && (
-            <form tw="space-y-5  ">
-              <TextField
-                label="Amount"
-                placeholder="N 5000"
-                value={amount}
-                setValue={setAmount}
-              />
-              <TextField
-                label="Network"
-                select={['Airtel', 'MTN', 'Glo', '9mobile']}
-                value={network}
-                setValue={setNetwork}
-              />
-              <TextField
-                label="Phone Number"
-                placeholder="08012345678"
-                value={phoneNumber}
-                setValue={setPhoneNumber}
-              />
+          {(activeTab === 'info' || activeTab === 'summary') && (
+            <>
+              <form tw="space-y-5  ">
+                <TextField
+                  label="Amount"
+                  placeholder="N 5000"
+                  value={amount}
+                  setValue={setAmount}
+                />
+                <TextField
+                  label="Network"
+                  select={['Airtel', 'MTN', 'Glo', '9mobile']}
+                  value={network}
+                  setValue={setNetwork}
+                />
+                <TextField
+                  label="Phone Number"
+                  placeholder="08012345678"
+                  value={phoneNumber}
+                  setValue={setPhoneNumber}
+                />
 
-              <FormControlLabel
-                control={<IOSSwitch />}
-                label={<p tw="text-[13px] ml-2">Add to beneficiary</p>}
-              />
+                <FormControlLabel
+                  control={<IOSSwitch />}
+                  label={<p tw="text-[13px] ml-2">Add to beneficiary</p>}
+                />
 
-              <MUIButton onClick={handleNext}>Next</MUIButton>
-            </form>
+                <MUIButton onClick={handleInfoNext}>Next</MUIButton>
+              </form>
+
+              {/* Summary Modal */}
+              <Modal
+                title="Summary"
+                setState={setModalView}
+                state={modalView}
+                buttonLabel="Confirm"
+                onClick={handleSummaryConfirm}
+              >
+                <h6 tw="text-center text-xs mb-10">
+                  Pleace confirm the details
+                </h6>
+
+                <div tw="grid grid-cols-2 gap-y-8 gap-x-4">
+                  <ReceiptLabel
+                    label="Amount"
+                    value={
+                      <CurrencyFormat
+                        value={amount}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        prefix={'₦'}
+                        className="font-500"
+                      />
+                    }
+                  />
+                  <ReceiptLabel
+                    label="Phone Number"
+                    value={phoneNumber}
+                    isRightAlgned
+                  />
+                  <ReceiptLabel label="Network" value={network} />
+                </div>
+              </Modal>
+            </>
           )}
 
           {activeTab === 'confirm' && (

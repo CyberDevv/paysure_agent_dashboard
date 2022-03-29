@@ -14,6 +14,7 @@ const Index_modal_layout = ({
   onClick,
   link,
   linkLabel,
+  isClose,
 }) => {
   // function
   const handleClose = React.useCallback(() => {
@@ -45,21 +46,37 @@ const Index_modal_layout = ({
             {children}
           </div>
 
-          <Divider
-            sx={{
-              borderColor: '#E4ECF7',
-              marginTop: '40px',
-              marginBottom: '24px',
-            }}
-          />
+          {!isClose && (
+            <Divider
+              sx={{
+                borderColor: '#E4ECF7',
+                marginTop: '40px',
+                marginBottom: '24px',
+              }}
+            />
+          )}
 
-          <ModalButton onClick={onClick} className="font-500">
-            {buttonLabel}
-          </ModalButton>
+          {!isClose && (
+            <ModalButton onClick={onClick} className="font-500">
+              {buttonLabel}
+            </ModalButton>
+          )}
+
+          {isClose && (
+            <ModalButton
+              tw="bg-transparent text-paysure-danger-100 py-2.5 hover:(bg-gray-50)"
+              onClick={handleClose}
+              className="font-500"
+            >
+              {buttonLabel}
+            </ModalButton>
+          )}
 
           {link && (
             <Link href={link}>
-              <a tw="cursor-pointer mt-7 hover:(underline) text-center block text-sm">{linkLabel}</a>
+              <a tw="cursor-pointer mt-7 hover:(underline) text-center block text-sm">
+                {linkLabel}
+              </a>
             </Link>
           )}
         </Form>

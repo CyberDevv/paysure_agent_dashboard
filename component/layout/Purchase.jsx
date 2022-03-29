@@ -1,16 +1,41 @@
 import React from 'react'
 import tw from 'twin.macro'
-import Link from 'next/link'
-import { styled } from '@mui/material/styles'
-import { Button, Divider, Switch } from '@mui/material'
+import { Button, Divider } from '@mui/material'
+import CurrencyFormat from 'react-currency-format'
 
-import { Verified, UnVerified, ArrowBack } from '../SVGIcons'
+import { Modal } from '..'
+import {
+  Verified,
+  UnVerified,
+  ArrowBack,
+  GreaterThanSVG,
+  QRCodeSVG,
+} from '../SVGIcons'
 import Router from 'next/router'
 
-const BuyAirtimeDashboard = ({ title, children, infoState, confirmState }) => {
+const BuyAirtimeDashboard = ({
+  title,
+  children,
+  infoState,
+  confirmState,
+  payMethodSelected,
+  activeTab,
+  amount,
+  setActiveTab,
+  setPayMethodSelected,
+}) => {
   const handleGoBack = React.useCallback(() => {
     Router.back()
   })
+
+  const [walletBalanceModal, setWalletBalanceModal] = React.useState(false)
+  const [ussdModal, setUssdModal] = React.useState(false)
+  const [QRCodeModal, setQRCodeModal] = React.useState(false)
+
+  const handleToPin = () => {
+    setActiveTab('confirm')
+    setPayMethodSelected(true)
+  }
 
   return (
     <>
@@ -28,14 +53,20 @@ const BuyAirtimeDashboard = ({ title, children, infoState, confirmState }) => {
           </div>
 
           {/* Steps indicatior */}
-          <div tw="mt-4 lg:mt-8 flex space-x-4 items-center justify-center lg:(block space-y-8 space-x-0)">
-            <p tw="lg:pr-3 text-[13px]">
+          <div tw="mt-4 lg:mt-8 flex space-x-4 items-center justify-center flex-wrap lg:(block space-y-8 space-x-0)">
+            <p tw="my-1 lg:pr-3 text-[13px]">
               <i tw="mr-2 md:mr-4">
                 {infoState ? <Verified /> : <UnVerified />}
               </i>
               Enter Information
             </p>
-            <p tw="lg:pr-3 text-[13px]">
+            <p tw="my-1 lg:pr-3 text-[13px]">
+              <i tw="mr-2 md:mr-4">
+                {payMethodSelected ? <Verified /> : <UnVerified />}
+              </i>
+              Choose Payment Method
+            </p>
+            <p tw="my-1 lg:pr-3 text-[13px]">
               <i tw="mr-2 md:mr-4">
                 {confirmState ? <Verified /> : <UnVerified />}
               </i>
@@ -49,7 +80,99 @@ const BuyAirtimeDashboard = ({ title, children, infoState, confirmState }) => {
 
         {/* sections 2 */}
         <div css={[tw`w-full mt-8 lg:px-8 flex justify-center xl:mt-8`]}>
-          <div tw="max-w-sm lg:(flex justify-center)">{children}</div>
+          <div tw="max-w-sm lg:(flex justify-center) w-full">
+            {children}
+            {activeTab === 'paymentMethod' && (
+              <>
+                <div tw="w-full space-y-5">
+                  <PaymentButton
+                    label="Pay With Wallet"
+                    onClick={() => setWalletBalanceModal(true)}
+                  />
+                  <PaymentButton label="Pay With Bank Card" />
+                  <PaymentButton
+                    label="Pay With USSD Code"
+                    onClick={() => setUssdModal(true)}
+                  />
+                  <PaymentButton
+                    label="Pay With QR Code"
+                    onClick={() => setQRCodeModal(true)}
+                  />
+                </div>
+
+                {/* Wallet Ballance Modal */}
+                <Modal
+                  title="Wallet Balance"
+                  setState={setWalletBalanceModal}
+                  state={walletBalanceModal}
+                  buttonLabel="Continue"
+                  onClick={handleToPin}
+                >
+                  <p tw="text-center mt-[50px] text-[32px]">
+                    <CurrencyFormat
+                      value={32323258}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      prefix={'₦'}
+                      className="font-500"
+                    />
+                  </p>
+                  <p tw="text-[#505780] text-xs text-center">Wallet Balance</p>
+                </Modal>
+
+                {/* ussd Modal */}
+                <Modal
+                  title="USSD Code"
+                  setState={setUssdModal}
+                  state={ussdModal}
+                  buttonLabel="Close"
+                  isClose
+                >
+                  <h6 tw="text-center text-xs my-6">
+                    How much do you want to send
+                  </h6>
+
+                  <p tw="text-center mt-[50px] text-[32px]">
+                    <CurrencyFormat
+                      value={amount}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      prefix={'₦'}
+                      className="font-500"
+                    />
+                  </p>
+
+                  <div tw="flex justify-center w-full py-8">
+                    <div tw="flex items-center justify-center p-3 bg-[#F9F5FF] space-x-8 min-w-[222px] rounded-lg">
+                      <p tw="text-paysure-primary-100">
+                        *123*4*<span>{amount}</span>#
+                      </p>
+                      <Button tw="normal-case text-white bg-paysure-primary-100">
+                        Copy
+                      </Button>
+                    </div>
+                  </div>
+                </Modal>
+
+                {/* QR Code Modal */}
+                <Modal
+                  title="Scan QR Code"
+                  setState={setQRCodeModal}
+                  state={QRCodeModal}
+                  buttonLabel="Close"
+                  isClose
+                >
+                  <div tw="flex items-center justify-center my-6">
+                    <QRCodeSVG />
+                  </div>
+
+                  <h6 tw="text-center text-xs my-6">
+                    Scan QR code to make a payment
+                  </h6>
+                </Modal>
+              </>
+            )}
+          </div>
         </div>
 
         <Divider css={[tw`hidden lg:block`]} orientation="vertical" flexItem />
@@ -88,7 +211,10 @@ const SponoredAd = ({ label, description, btnLabel, btn }) => {
 
       {/* Text */}
       <div tw="mt-4">
-        <p tw="text-light-dark tracking-[-0.025em] text-sm xl:text-base" className="font-500">
+        <p
+          tw="text-light-dark tracking-[-0.025em] text-sm xl:text-base"
+          className="font-500"
+        >
           {label}
         </p>
         {description && (
@@ -111,6 +237,19 @@ const SponoredAd = ({ label, description, btnLabel, btn }) => {
         )}
       </div>
     </div>
+  )
+}
+
+const PaymentButton = ({ label, onClick }) => {
+  return (
+    <Button
+      fullWidth
+      endIcon={<GreaterThanSVG />}
+      tw="normal-case bg-[#EBF2FA] text-black text-sm p-5 justify-between rounded-lg"
+      onClick={onClick}
+    >
+      {label}
+    </Button>
   )
 }
 
