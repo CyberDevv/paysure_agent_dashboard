@@ -1,8 +1,8 @@
 import React from 'react'
 import tw from 'twin.macro'
 import OtpInput from 'react-otp-input'
+import { Button, Divider } from '@mui/material'
 import CurrencyFormat from 'react-currency-format'
-import { Button, Divider, FormControlLabel } from '@mui/material'
 
 import { TransactionSuccessSVG } from '../SVGIcons'
 import { Layout, PurchaseLayout, ReceiptLabel, TextField, Modal } from '..'
