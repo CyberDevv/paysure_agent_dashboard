@@ -167,11 +167,11 @@ const columns = [
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Tax</Ttile>
 
-          <MUIButton startIcon={<Add />}>
-            <Link href="/billPayment/tax/payTax">
-              <a>Pay Tax</a>
-            </Link>
-          </MUIButton>
+          <Link href="/billPayment/tax/payTax">
+            <a>
+              <MUIButton startIcon={<Add />}>Pay Tax</MUIButton>
+            </a>
+          </Link>
         </div>
 
         <HomeDisplayCard data={agentPageData} />
