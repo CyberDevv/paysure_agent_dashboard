@@ -194,11 +194,11 @@ const DataDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Data</Ttile>
 
-          <MUIButton startIcon={<Add />}>
-            <Link href="/billPayment/data/buyData">
-              <a>Buy Data</a>
-            </Link>
-          </MUIButton>
+          <Link href="/billPayment/data/buyData">
+            <a>
+              <MUIButton startIcon={<Add />}>Buy Data</MUIButton>
+            </a>
+          </Link>
         </div>
 
         <HomeDisplayCard data={agentPageData} />

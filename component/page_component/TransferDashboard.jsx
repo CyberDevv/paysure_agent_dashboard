@@ -202,11 +202,11 @@ const TransferDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Transfer</Ttile>
 
-          <MUIButton startIcon={<Add />}>
-            <Link href="/billPayment/transfer/makeTransfer">
-              <a>Make Transfer</a>
-            </Link>
-          </MUIButton>
+          <Link href="/billPayment/transfer/makeTransfer">
+            <a>
+              <MUIButton startIcon={<Add />}>Make Transfer</MUIButton>
+            </a>
+          </Link>
         </div>
 
         <HomeDisplayCard data={agentPageData} />

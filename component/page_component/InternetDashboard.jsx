@@ -184,11 +184,11 @@ const InternetDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Internet</Ttile>
 
-          <MUIButton startIcon={<Add />}>
-            <Link href="/billPayment/internet/buyService">
-              <a>Buy Service</a>
-            </Link>
-          </MUIButton>
+          <Link href="/billPayment/internet/buyService">
+            <a>
+              <MUIButton startIcon={<Add />}>Buy Service</MUIButton>
+            </a>
+          </Link>
         </div>
 
         <HomeDisplayCard data={agentPageData} />

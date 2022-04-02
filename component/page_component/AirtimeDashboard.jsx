@@ -174,11 +174,11 @@ const AirtimeDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Airtime</Ttile>
 
-          <MUIButton startIcon={<Add />}>
-            <Link href="/billPayment/airtime/buyAirtime">
-              <a>Buy Airtime</a>
-            </Link>
-          </MUIButton>
+          <Link href="/billPayment/airtime/buyAirtime">
+            <a>
+              <MUIButton startIcon={<Add />}>Buy Airtime</MUIButton>
+            </a>
+          </Link>
         </div>
 
         <HomeDisplayCard data={agentPageData} />

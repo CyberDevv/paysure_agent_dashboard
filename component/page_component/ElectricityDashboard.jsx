@@ -186,11 +186,11 @@ const ElectricityDashboard = () => {
         <div css={[tw`flex justify-between items-center`]}>
           <Ttile className="font-bold">Electricity</Ttile>
 
-          <MUIButton startIcon={<Add />}>
-            <Link href="/billPayment/electricity/buyElectricity">
-              <a>Buy Electricity</a>
-            </Link>
-          </MUIButton>
+          <Link href="/billPayment/electricity/buyElectricity">
+            <a>
+              <MUIButton startIcon={<Add />}>Buy Electricity</MUIButton>
+            </a>
+          </Link>
         </div>
 
         <HomeDisplayCard data={agentPageData} />

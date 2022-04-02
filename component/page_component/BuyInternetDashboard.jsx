@@ -5,7 +5,7 @@ import { Button, Divider } from '@mui/material'
 import CurrencyFormat from 'react-currency-format'
 
 import { TransactionSuccessSVG } from '../SVGIcons'
-import { Layout, PurchaseLayout, ReceiptLabel, TextField } from '..'
+import { Layout, PurchaseLayout, ReceiptLabel, TextField, Modal } from '..'
 
 const BuyInternetDashboard = () => {
   // UseState Hooks
@@ -15,16 +15,24 @@ const BuyInternetDashboard = () => {
   const [amount, setAmount] = React.useState('')
   const [transactionPin, setTransactionPin] = React.useState('')
   const [infoEntered, setInfoEntered] = React.useState(false)
+  const [payMethodSelected, setPayMethodSelected] = React.useState(false)
   const [confilrmTransaction, setConfilrmTransaction] = React.useState(false)
+  const [modalView, setModalView] = React.useState(false)
+
+  const handleInfoNext = () => {
+    setModalView(true)
+    setActiveTab('summary')
+  }
+
+  const handleSummaryConfirm = () => {
+    setActiveTab('paymentMethod')
+    setModalView(false)
+    setInfoEntered(true)
+  }
 
   const handleNext = () => {
-    if (activeTab === 'info') {
-      setActiveTab('confirm')
-      setInfoEntered(true)
-    } else if (activeTab === 'confirm') {
-      setActiveTab('success')
-      setConfilrmTransaction(true)
-    }
+    setActiveTab('success')
+    setConfilrmTransaction(true)
   }
 
   return (
@@ -34,34 +42,76 @@ const BuyInternetDashboard = () => {
           title="Internet"
           infoState={infoEntered}
           confirmState={confilrmTransaction}
+          payMethodSelected={payMethodSelected}
+          activeTab={activeTab}
+          // amount={amount}
+          setPayMethodSelected={setPayMethodSelected}
+          setActiveTab={setActiveTab}
         >
-          {activeTab === 'info' && (
-            <form tw="space-y-5  ">
-              <TextField
-                label="Select Provider"
-                select={['Spectranet', 'IKEDC', 'ABEDC', 'ABUDC']}
-                value={provider}
-                setValue={setProvider}
-              />
-              <TextField
-                label="Enter Phone Number"
-                placeholder="+234 (0) 802 3412 123"
-                value={phoneNumber}
-                setValue={setPhoneNumber}
-              />
-              <TextField
-                label="Enter Amount"
-                placeholder="N 5000"
-                value={amount}
-                setValue={setAmount}
-              />
+          {(activeTab === 'info' || activeTab === 'summary') && (
+            <>
+              <form tw="space-y-5  ">
+                <TextField
+                  label="Select Provider"
+                  select={['Spectranet', 'IKEDC', 'ABEDC', 'ABUDC']}
+                  value={provider}
+                  setValue={setProvider}
+                />
+                <TextField
+                  label="Enter Phone Number"
+                  placeholder="+234 (0) 802 3412 123"
+                  value={phoneNumber}
+                  setValue={setPhoneNumber}
+                />
+                <TextField
+                  label="Enter Amount"
+                  placeholder="N 5000"
+                  value={amount}
+                  setValue={setAmount}
+                />
 
-              <div>
-                <MUIButton tw="mt-12" onClick={handleNext}>
-                  Next
-                </MUIButton>
-              </div>
-            </form>
+                <div>
+                  <MUIButton tw="mt-12" onClick={handleInfoNext}>
+                    Next
+                  </MUIButton>
+                </div>
+              </form>
+
+              {/* Summary Modal */}
+              <Modal
+                title="Summary"
+                setState={setModalView}
+                state={modalView}
+                buttonLabel="Confirm"
+                onClick={handleSummaryConfirm}
+              >
+                <h6 tw="text-center text-xs mb-10">
+                  Pleace confirm the details
+                </h6>
+
+                <div tw="grid grid-cols-2 gap-y-8 gap-x-4">
+                  <ReceiptLabel
+                    label="Amount"
+                    value={
+                      <CurrencyFormat
+                        value={97897}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        prefix={'₦'}
+                        className="font-500"
+                      />
+                    }
+                  />
+                  <ReceiptLabel
+                    label="Phone Number"
+                    value={phoneNumber}
+                    isRightAlgned
+                  />
+                  <ReceiptLabel label="Provider" value={provider} />
+                  {/* <ReceiptLabel label="Package" value={plan} isRightAlgned /> */}
+                </div>
+              </Modal>
+            </>
           )}
 
           {activeTab === 'confirm' && (
