@@ -18,6 +18,7 @@
     "@mui/lab": "^5.0.0-alpha.73",
     "@mui/material": "^5.5.1",
     "@mui/x-data-grid": "^5.6.1",
+    "material-ui-phone-number": "^3.0.0",
     "moment": "^2.29.1",
     "next": "latest",
     "nextjs-progressbar": "^0.0.14",

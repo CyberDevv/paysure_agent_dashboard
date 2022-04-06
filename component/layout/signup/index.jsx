@@ -22,7 +22,7 @@ const index = ({ children }) => {
 
 // Tailwind styles
 const MainWrapper = tw.div`h-screen lg:flex`
-const Aside = tw.div`w-1/4 h-screen bg-paysure-primary-100 hidden lg:(block min-w-[415px] w-[415px] py-[105px] pl-[193px])`
-const Main = tw.main`flex items-center justify-center h-[calc(100vh - 83px)] py-10 w-full lg:(w-3/4 h-screen items-start py-36)`
+const Aside = tw.div`w-1/4 h-screen bg-paysure-primary-100 hidden lg:(block min-w-[415px] w-[415px] py-[105px] pl-[193px] fixed)`
+const Main = tw.main`flex items-center justify-center py-10 min-h-screen lg:(w-full ml-[415px] h-full items-start mt-0 py-36)`
 
 export default index

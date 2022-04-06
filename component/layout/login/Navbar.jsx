@@ -11,6 +11,6 @@ const Navbar = () => {
 }
 
 // Tailwind styles
-const Nav = tw.nav`border-b-4 border-[#F1F1F5] py-6 px-6 sm:px-12 lg:px-16 xl:px-[120px]`
+const Nav = tw.nav`border-b-4 border-[#F1F1F5] py-4 px-6 sm:px-12 lg:(px-16 py-6) xl:px-[120px]`
 
 export default Navbar

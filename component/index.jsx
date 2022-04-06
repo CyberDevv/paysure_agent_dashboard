@@ -41,7 +41,6 @@ export { default as SettlementsDashboard } from './page_component/SettlementsDas
 export { default as TransactionsDashboard } from './page_component/TransactionsDashboard'
 export { default as MakeTransferDashboard } from './page_component/MakeTransferDashboard'
 export { default as WalletHistoryDashboard } from './page_component/WalletHistoryDashboard'
-export { default as SetUpPasswordDashboard } from './page_component/SetUpPasswordDashboard'
 export { default as UpdateProfileDashboard } from './page_component/UpdateProfileDashboard'
 export { default as BuyElectricityDashboard } from './page_component/BuyElectricityDashboard'
 export { default as TvSubscriptionDashboard } from './page_component/TvSubscriptionDashboard'
