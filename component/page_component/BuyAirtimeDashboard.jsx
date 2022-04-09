@@ -25,6 +25,7 @@ const BuyAirtimeDashboard = () => {
   const [payMethodSelected, setPayMethodSelected] = React.useState(false)
   const [confilrmTransaction, setConfilrmTransaction] = React.useState(false)
   const [modalView, setModalView] = React.useState(false)
+  const [beneficiaryModalView, setBeneficiaryModalView] = React.useState(false)
 
   const handleInfoNext = () => {
     setModalView(true)
@@ -82,8 +83,24 @@ const BuyAirtimeDashboard = () => {
                   label={<p tw="text-[13px] ml-2">Add to beneficiary</p>}
                 />
 
-                <MUIButton onClick={handleInfoNext}>Next</MUIButton>
+                <div tw="flex items-center justify-center flex-col space-y-6">
+                  <MUIButton onClick={handleInfoNext}>Next</MUIButton>
+
+                  <Button
+                    onClick={() => setBeneficiaryModalView(true)}
+                    tw="normal-case text-paysure-primary-100"
+                  >
+                    Select a beneficiary
+                  </Button>
+                </div>
               </form>
+
+              {/* Select Beneficiary */}
+              <Modal
+                title="Select Beneficiary"
+                setState={setBeneficiaryModalView}
+                state={beneficiaryModalView}
+              ></Modal>
 
               {/* Summary Modal */}
               <Modal

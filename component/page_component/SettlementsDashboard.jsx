@@ -267,6 +267,10 @@ const StatusdropdownData = [
     label: 'Failed',
   },
   {
+    value: 'pending',
+    label: 'Pending',
+  },
+  {
     value: 'successful',
     label: 'Successful',
   },

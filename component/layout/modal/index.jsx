@@ -46,7 +46,7 @@ const Index_modal_layout = ({
             {children}
           </div>
 
-          {!isClose && (
+          {!isClose && buttonLabel && (
             <Divider
               sx={{
                 borderColor: '#E4ECF7',
@@ -56,7 +56,7 @@ const Index_modal_layout = ({
             />
           )}
 
-          {!isClose && (
+          {!isClose && buttonLabel && (
             <ModalButton onClick={onClick} className="font-500">
               {buttonLabel}
             </ModalButton>

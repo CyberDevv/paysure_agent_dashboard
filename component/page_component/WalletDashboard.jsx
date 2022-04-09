@@ -294,16 +294,20 @@ const WalletsDashboard = () => {
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [
   {
-    value: 'all',
     label: 'All',
+    value: 'all',
   },
   {
-    value: 'user',
-    label: 'User',
+    label: 'Pending',
+    value: 'pending',
   },
   {
-    value: 'admin',
-    label: 'Admin',
+    label: 'Completed',
+    value: 'completed',
+  },
+  {
+    label: 'Failed',
+    value: 'failed',
   },
 ]
 

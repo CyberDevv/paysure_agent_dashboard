@@ -115,7 +115,7 @@ const HomeDashboard = () => {
         />
 
         <DataGridViewTemp
-          link="/transactions/transactionsList"
+          link="/transactions"
           limited
           title="Transaction Records"
           rows={[]}
@@ -137,16 +137,44 @@ const HomeDashboard = () => {
 // FIXME: Temp data (should be replaced with real data)
 const dropdownData = [
   {
-    label: 'All',
     value: 'all',
+    label: 'All',
   },
   {
-    value: 'user',
-    label: 'User',
+    value: 'pos withdrawal',
+    label: 'POS Withdrawal',
   },
   {
-    value: 'admin',
-    label: 'Admin',
+    value: 'wallet history',
+    label: 'Wallet History',
+  },
+  {
+    value: 'Transfer',
+    label: 'Transfer',
+  },
+  {
+    value: 'Airtime',
+    label: 'Airtime',
+  },
+  {
+    value: 'Data',
+    label: 'Data',
+  },
+  {
+    value: 'TV Subscription',
+    label: 'TV Subscription',
+  },
+  {
+    value: 'Electricity',
+    label: 'Electricity',
+  },
+  {
+    value: 'tax',
+    label: 'Tax',
+  },
+  {
+    value: 'Internet',
+    label: 'Internet',
   },
 ]
 
@@ -162,6 +190,10 @@ const showingdropdownData = [
   {
     label: 'Completed',
     value: 'completed',
+  },
+  {
+    label: 'Failed',
+    value: 'failed',
   },
 ]
 

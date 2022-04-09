@@ -18,6 +18,7 @@
     "@mui/lab": "^5.0.0-alpha.73",
     "@mui/material": "^5.5.1",
     "@mui/x-data-grid": "^5.6.1",
+    "axios": "^0.26.1",
     "material-ui-phone-number": "^3.0.0",
     "moment": "^2.29.1",
     "next": "latest",
@@ -26,7 +27,8 @@
     "react-currency-format": "^1.1.0",
     "react-dom": "^17.0.2",
     "react-otp-input": "^2.4.0",
-    "react-to-print": "^2.14.4"
+    "react-to-print": "^2.14.4",
+    "react-toastify": "^8.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

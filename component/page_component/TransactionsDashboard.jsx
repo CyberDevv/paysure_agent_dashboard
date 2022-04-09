@@ -13,6 +13,7 @@ import {
   FilterBox,
   DatRangePickerAndOthers,
   Receipt,
+  SearchBar
 } from '..'
 
 const TransactionsDashboard = () => {
@@ -207,7 +208,8 @@ const TransactionsDashboard = () => {
           className={tw`flex flex-col space-y-4 sm:(grid grid-cols-2) 2xl:(flex flex-row space-y-0 space-x-4) w-full`}
         >
           <div tw="grid gap-4 sm:(col-span-2) md:(grid-cols-3) 2xl:(flex) w-full">
-            <FilterBox label="Showing" dropdownData={dropdownData} />
+            <SearchBar />
+            {/* <FilterBox label="Showing" dropdownData={dropdownData} /> */}
             <FilterBox label="Status" dropdownData={StatusdropdownData} />
             <FilterBox label="Transaction" dropdownData={dropdownData} />
           </div>
@@ -315,6 +317,10 @@ const StatusdropdownData = [
   {
     value: 'complete',
     label: 'Complete',
+  },
+  {
+    value: 'failed',
+    label: 'Failed',
   },
 ]
 

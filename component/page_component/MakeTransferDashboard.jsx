@@ -5,7 +5,14 @@ import CurrencyFormat from 'react-currency-format'
 import { Button, Divider, FormControlLabel } from '@mui/material'
 
 import { TransactionSuccessSVG } from '../SVGIcons'
-import { Layout, PurchaseLayout, ReceiptLabel, TextField, IOSSwitch, Modal } from '..'
+import {
+  Layout,
+  PurchaseLayout,
+  ReceiptLabel,
+  TextField,
+  IOSSwitch,
+  Modal,
+} from '..'
 
 const MakeTransferDashboard = () => {
   // UseState Hooks
@@ -16,25 +23,26 @@ const MakeTransferDashboard = () => {
   const [transactionPin, setTransactionPin] = React.useState('')
   const [amount, setAmount] = React.useState('')
   const [infoEntered, setInfoEntered] = React.useState(false)
-    const [payMethodSelected, setPayMethodSelected] = React.useState(false)
-    const [confilrmTransaction, setConfilrmTransaction] = React.useState(false)
-    const [modalView, setModalView] = React.useState(false)
+  const [payMethodSelected, setPayMethodSelected] = React.useState(false)
+  const [confilrmTransaction, setConfilrmTransaction] = React.useState(false)
+  const [modalView, setModalView] = React.useState(false)
+  const [beneficiaryModalView, setBeneficiaryModalView] = React.useState(false)
 
-    const handleInfoNext = () => {
-      setModalView(true)
-      setActiveTab('summary')
-    }
+  const handleInfoNext = () => {
+    setModalView(true)
+    setActiveTab('summary')
+  }
 
-    const handleSummaryConfirm = () => {
-      setActiveTab('paymentMethod')
-      setModalView(false)
-      setInfoEntered(true)
-    }
+  const handleSummaryConfirm = () => {
+    setActiveTab('paymentMethod')
+    setModalView(false)
+    setInfoEntered(true)
+  }
 
-    const handleNext = () => {
-      setActiveTab('success')
-      setConfilrmTransaction(true)
-    }
+  const handleNext = () => {
+    setActiveTab('success')
+    setConfilrmTransaction(true)
+  }
 
   return (
     <>
@@ -87,11 +95,22 @@ const MakeTransferDashboard = () => {
                     Next
                   </MUIButton>
 
-                  <Button tw="normal-case text-paysure-primary-100 ">
+                  <Button
+                    onClick={() => setBeneficiaryModalView(true)}
+                    tw="normal-case text-paysure-primary-100"
+                  >
                     Select a beneficiary
                   </Button>
                 </div>
               </form>
+
+              {/* Select Beneficiary */}
+              <Modal
+                title="Select Beneficiary"
+                setState={setBeneficiaryModalView}
+                state={beneficiaryModalView}
+              >
+              </Modal>
 
               {/* Summary Modal */}
               <Modal
@@ -124,7 +143,11 @@ const MakeTransferDashboard = () => {
                     isRightAlgned
                   />
                   <ReceiptLabel label="Bank" value={bank} />
-                  <ReceiptLabel label="Account Name" value={AccountNumber} isRightAlgned />
+                  <ReceiptLabel
+                    label="Account Name"
+                    value={AccountNumber}
+                    isRightAlgned
+                  />
                 </div>
               </Modal>
             </>

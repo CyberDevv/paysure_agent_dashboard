@@ -49,7 +49,7 @@ const AgentDashboard = () => {
             <AvatarDetails>
               <UserName className="font-bold">{userDetails.name}</UserName>
               <AgentsTerminalAmount>
-                23 Agents, 40 Terminals
+                3 Terminals
               </AgentsTerminalAmount>
             </AvatarDetails>
           </AvatarWrapper>
