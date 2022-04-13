@@ -32,6 +32,7 @@ export async function makeEncryptedRequestWithoutUserJWT(data, url, method) {
         REQ_HEADER,
       )
 
+
       return {
         status: response2.status,
         data: response2.data,

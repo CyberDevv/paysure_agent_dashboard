@@ -1,8 +1,12 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import NextNProgress from 'nextjs-progressbar'
+import { ToastContainer } from 'react-toastify'
 import { createTheme, ThemeProvider } from '@mui/material'
 
 import '../styles/globalStyles.css'
+import store from '../features/store'
+import 'react-toastify/dist/ReactToastify.css'
 import GlobalStyles from '../styles/GlobalStyles'
 
 const theme = createTheme({
@@ -19,11 +23,14 @@ const theme = createTheme({
 })
 
 const App = ({ Component, pageProps }) => (
-  <ThemeProvider theme={theme}>
-    <NextNProgress height={5} color="#6500E0" />
-    <GlobalStyles />
-    <Component {...pageProps} />
-  </ThemeProvider>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <NextNProgress height={5} color="#6500E0" />
+      <GlobalStyles />
+      <Component {...pageProps} />
+      <ToastContainer />
+    </ThemeProvider>
+  </Provider>
 )
 
 export default App
