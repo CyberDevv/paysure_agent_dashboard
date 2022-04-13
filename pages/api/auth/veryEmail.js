@@ -1,20 +1,17 @@
 import { makeEncryptedRequestWithoutUserJWT } from '../../../utils/makeEncryptedRequestWithoutUserJWT'
 
-export default async function loginAPI(req, res) {
+export default async function verifyEmail(req, res) {
   try {
-    const { email, password } = req.body
+    const { email, otp } = req.body
 
     const response = await makeEncryptedRequestWithoutUserJWT(
-      { userName: email, password },
-      'paysure/api/processor/user-login',
+      { userName: email, otp },
+      'paysure/api/processor/votp-email',
       'POST',
     )
 
-    console.log(response)
-
     res.status(response.status).json(response)
   } catch (error) {
-    console.log(error)
     res.json(error)
   }
 }

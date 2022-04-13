@@ -1,29 +1,84 @@
 import React from 'react'
+import axios from 'axios'
 import tw from 'twin.macro'
-import Image from 'next/image'
-import OtpInput from 'react-otp-input'
-import { Button } from '@mui/material'
 import Link from 'next/link'
+import Image from 'next/image'
+import Router from 'next/router'
+import OtpInput from 'react-otp-input'
+import { toast } from 'react-toastify'
+import LoadingButton from '@mui/lab/LoadingButton'
+
 import { UnVerified, Verified } from '../SVGIcons'
 
 const AccountVerificationDashboard = () => {
   // useState hooks
+  const [email, setEmail] = React.useState('')
   const [otp, setOtp] = React.useState('')
-  const [phoneNumber, setPhoneNumber] = React.useState('')
+  const [otpMobile, setOtpMobile] = React.useState('')
   const [otpEntered, setOtpEntered] = React.useState(false)
   const [phoneEntered, setPhoneEntered] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
+
+  // useEffect hook
+  React.useEffect(() => {
+    // get email from local storage
+    const email = localStorage.getItem('email')
+    if (email) {
+      setEmail(email)
+    } else {
+      Router.push('/signup')
+    }
+  }, [])
 
   // functions
   const setOtpValue = value => {
     setOtp(value)
   }
 
+  const setOtpValueMobile = value => {
+    setOtpMobile(value)
+  }
+
   const handleOtpSubmit = () => {
-    setOtpEntered(true)
+    setLoading(true)
+
+    axios
+      .post('/api/auth/veryEmail', {
+        email,
+        otp,
+      })
+      .then(res => {
+        console.log(res)
+        setLoading(false)
+        setOtpEntered(true)
+      })
+      .catch(err => {
+        setLoading(false)
+        if (err.response) {
+          toast.error(err.response.data.data)
+        }
+      })
   }
 
   const handlePhoneSubmit = () => {
-    setPhoneEntered(true)
+    setLoading(true)
+
+    axios
+      .post('/api/auth/verifyPhoneNumber', {
+        email,
+        otp,
+      })
+      .then(res => {
+        console.log(res)
+        setLoading(false)
+        setPhoneEntered(true)
+      })
+      .catch(err => {
+        setLoading(false)
+        if (err.response) {
+          toast.error(err.response.data.data)
+        }
+      })
   }
 
   return (
@@ -66,14 +121,16 @@ const AccountVerificationDashboard = () => {
                     color: '#3E3E3E',
                     padding: '0px 10px',
                   }}
-                  numInputs={6}
-                  placeholder="――――――"
+                  numInputs={4}
+                  placeholder="――――"
                   value={otp}
                   onChange={setOtpValue}
                 />
               </InputWrapper>
 
-              <MUIButton onClick={handleOtpSubmit}>Verify email</MUIButton>
+              <MUIButton loading={loading} onClick={handleOtpSubmit}>
+                Verify email
+              </MUIButton>
             </>
           )}
 
@@ -95,14 +152,14 @@ const AccountVerificationDashboard = () => {
                     color: '#3E3E3E',
                     padding: '0px 10px',
                   }}
-                  numInputs={6}
-                  placeholder="――――――"
-                  value={phoneNumber}
-                  onChange={setPhoneNumber}
+                  numInputs={4}
+                  placeholder="――――"
+                  value={otpMobile}
+                  onChange={setOtpValueMobile}
                 />
               </InputWrapper>
 
-              <MUIButton onClick={handlePhoneSubmit}>
+              <MUIButton loading={loading} onClick={handlePhoneSubmit}>
                 Verify phone number
               </MUIButton>
             </>
@@ -115,11 +172,17 @@ const AccountVerificationDashboard = () => {
                 Your account has been created, you can now use Paysure services
               </P>
 
-              <MUIButton>
-                <Link href="/login">
-                  <a tw="w-full py-1">Login to dashboard</a>
-                </Link>
-              </MUIButton>
+              <Link href="/login">
+                <a tw="w-full py-1">
+                  <MUIButton
+                    onClick={() => {
+                      localStorage.removeItem('email')
+                    }}
+                  >
+                    Login to dashboard
+                  </MUIButton>
+                </a>
+              </Link>
             </>
           )}
         </div>
@@ -137,7 +200,7 @@ const Aside = tw.div`w-1/4 h-screen bg-[#FAFAFA] hidden lg:(block min-w-[415px] 
 const Main = tw.main`flex items-center justify-center h-[calc(100vh - 83px)] py-10 w-full lg:(w-3/4 h-screen items-start py-36)`
 const InputWrapper = tw.div`max-w-[308px] border mt-10 border-[#E3E5E8] rounded px-[54px]`
 const MUIButton = tw(
-  Button,
+  LoadingButton,
 )`w-[308px] bg-paysure-primary-100 text-white normal-case transition-all py-3 mt-10 rounded text-sm hover:(bg-paysure-primary-100 brightness-90)`
 
 export default AccountVerificationDashboard

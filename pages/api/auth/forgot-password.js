@@ -1,12 +1,12 @@
 import { makeEncryptedRequestWithoutUserJWT } from '../../../utils/makeEncryptedRequestWithoutUserJWT'
 
-export default async function loginAPI(req, res) {
+export default async function forgotPasswordAPI(req, res) {
   try {
-    const { email, password } = req.body
+    const { email } = req.body
 
     const response = await makeEncryptedRequestWithoutUserJWT(
-      { userName: email, password },
-      'paysure/api/processor/user-login',
+      { userName: email },
+      'paysure/api/processor/force-password-change',
       'POST',
     )
 

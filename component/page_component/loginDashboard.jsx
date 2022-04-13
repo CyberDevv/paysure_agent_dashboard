@@ -50,21 +50,20 @@ const loginDashboard = () => {
         password,
       })
       .then(res => {
-
         console.log(res)
-        
+
         if (!res.data.data) {
           toast.error('Please refresh the page and try again.')
           setLoading(false)
           return
         }
 
-        // checks if the user is an admin
-        // if (res.data.data.userRole !== 1) {
-        //   toast.error('You are not an admin')
-        //   setLoading(false)
-        //   return
-        // }
+        // checks if the user is an agent
+        if (res.data.data.userRole !== 08) {
+          toast.error('You are not an agent')
+          setLoading(false)
+          return
+        }
 
         // dispatches the user details to the redux store
         dispatch(login(res.data.data))

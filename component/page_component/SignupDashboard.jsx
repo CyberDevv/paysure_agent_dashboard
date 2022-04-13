@@ -13,12 +13,12 @@ const SignUp = () => {
   // useState hook
   const [firstName, setFirstName] = React.useState('Ibrahim')
   const [lastName, setLastName] = React.useState('Odesola')
-  const [email, setEmail] = React.useState('Waka@gmail.com')
-  const [phoneNumber, setPhoneNumber] = React.useState('+2348012345678')
+  const [email, setEmail] = React.useState('wakajeje@gmail.com')
+  const [phoneNumber, setPhoneNumber] = React.useState('+2348012341112')
   const [BVN, setBVN] = React.useState('12345678901')
   const [businessName, setBusinessName] = React.useState('Hola')
   const [businessAddress, setBusinessAddress] = React.useState('Hola address')
-  const [userRole, setUserRole] = React.useState('02')
+  const [userRole, setUserRole] = React.useState('08')
   const [setupPassword, setSetUpPassword] = React.useState(false)
   const [password, setPassword] = React.useState('#As12345678')
   const [confirmPassword, setConfirmPassword] = React.useState('#As12345678')
@@ -69,7 +69,7 @@ const SignUp = () => {
     !businessAddress ||
     !userRole
       ? toast.error('Please fill in all fields')
-      : setSetUpPassword(true)
+      : (setSetUpPassword(true), localStorage.setItem('email', email))
   }
 
   return (
@@ -89,7 +89,7 @@ const SignUp = () => {
                   onChange={handleUserRoleChange}
                 >
                   <FormControlLabel
-                    value="02"
+                    value="11"
                     control={
                       <Radio
                         icon={<RadioUnChecked />}
@@ -99,7 +99,7 @@ const SignUp = () => {
                     label={<p tw="text-sm text-[#4E5D78]">Super Agent</p>}
                   />
                   <FormControlLabel
-                    value="01"
+                    value="08"
                     control={
                       <Radio
                         icon={<RadioUnChecked />}
@@ -194,6 +194,15 @@ const SignUp = () => {
               <MUIButton loading={loading} onClick={handleSignup}>
                 Confirm Password
               </MUIButton>
+
+              <div tw="flex items-center justify-center">
+                <button
+                  tw="normal-case text-sm hover:(underline)"
+                  onClick={() => setSetUpPassword(false)}
+                >
+                  Back
+                </button>
+              </div>
             </Form>
           </>
         )}
