@@ -59,7 +59,7 @@ const loginDashboard = () => {
         }
 
         // checks if the user is an agent
-        if (res.data.data.userRole !== 08) {
+        if (res.data.data.userRole !== 7) {
           toast.error('You are not an agent')
           setLoading(false)
           return

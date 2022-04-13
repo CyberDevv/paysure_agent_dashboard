@@ -3,13 +3,18 @@ import tw from 'twin.macro'
 import Link from 'next/link'
 import Image from 'next/image'
 import Router from 'next/router'
+import { useDispatch } from 'react-redux'
+import { destroyCookie, setCookie } from 'nookies'
 import { IconButton, Menu, MenuItem } from '@mui/material'
 
+import { logout } from '../../../features/userSlice'
 import { SettingsOUtline, CircledUser, MenuHamburger } from '../../SVGIcons'
 
 const NavBar_main_layout = ({ setIsSideBarOpen, title, goBack }) => {
   // useState hook
   const [anchorEl, setAnchorEl] = React.useState(null)
+
+  const dispatch = useDispatch()
 
   // functions
   const handleSideBarToggle = React.useCallback(() => {
@@ -38,10 +43,10 @@ const NavBar_main_layout = ({ setIsSideBarOpen, title, goBack }) => {
   const handleLogout = React.useCallback(() => {
     setAnchorEl(null)
 
-    // dispatch(logout())
-    // destroyCookie(null, 'USER_AUTHORIZATION')
-    // localStorage.removeItem('user')
-    // Router.push('/login')
+    dispatch(logout())
+    destroyCookie(null, 'USER_AUTHORIZATION')
+    localStorage.removeItem('user')
+    Router.push('/login')
   })
 
   return (

@@ -11,17 +11,17 @@ import { RadioChecked, RadioUnChecked } from '../SVGIcons'
 
 const SignUp = () => {
   // useState hook
-  const [firstName, setFirstName] = React.useState('Ibrahim')
-  const [lastName, setLastName] = React.useState('Odesola')
-  const [email, setEmail] = React.useState('wakajeje@gmail.com')
-  const [phoneNumber, setPhoneNumber] = React.useState('+2348012341112')
-  const [BVN, setBVN] = React.useState('12345678901')
-  const [businessName, setBusinessName] = React.useState('Hola')
-  const [businessAddress, setBusinessAddress] = React.useState('Hola address')
-  const [userRole, setUserRole] = React.useState('08')
+  const [firstName, setFirstName] = React.useState('')
+  const [lastName, setLastName] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [phoneNumber, setPhoneNumber] = React.useState('')
+  const [BVN, setBVN] = React.useState('')
+  const [businessName, setBusinessName] = React.useState('')
+  const [businessAddress, setBusinessAddress] = React.useState('')
+  const [userRole, setUserRole] = React.useState('07')
   const [setupPassword, setSetUpPassword] = React.useState(false)
-  const [password, setPassword] = React.useState('#As12345678')
-  const [confirmPassword, setConfirmPassword] = React.useState('#As12345678')
+  const [password, setPassword] = React.useState('')
+  const [confirmPassword, setConfirmPassword] = React.useState('')
   const [loading, setLoading] = React.useState(false)
 
   // functions
@@ -99,7 +99,7 @@ const SignUp = () => {
                     label={<p tw="text-sm text-[#4E5D78]">Super Agent</p>}
                   />
                   <FormControlLabel
-                    value="08"
+                    value="07"
                     control={
                       <Radio
                         icon={<RadioUnChecked />}
