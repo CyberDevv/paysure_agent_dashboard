@@ -22,7 +22,7 @@
     "axios": "^0.26.1",
     "generate-unique-id": "^2.0.1",
     "material-ui-phone-number": "^3.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "next": "latest",
     "nextjs-progressbar": "^0.0.14",
     "nookies": "^2.5.2",
