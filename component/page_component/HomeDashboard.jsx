@@ -13,13 +13,13 @@ import {
   FilterBox,
 } from '..'
 
-const HomeDashboard = () => {
+const HomeDashboard = ({ homeDashboardData }) => {
   // array of home page stats
   const homePageData = [
     {
       amount: (
         <CurrencyFormat
-          value={5283232}
+          value={homeDashboardData.walletBalance}
           displayType={'text'}
           thousandSeparator={true}
           prefix={'₦'}
@@ -28,12 +28,12 @@ const HomeDashboard = () => {
       title: 'Wallet Balance',
     },
     {
-      amount: NumberFormatter(24),
+      amount: NumberFormatter(homeDashboardData.totalNumberOfTerminals),
       title: 'Total Number of Terminals',
       link: '/terminals',
     },
     {
-      amount: NumberFormatter(2783),
+      amount: NumberFormatter(homeDashboardData.totalTransactionsCount),
       title: 'Total Number of Transactions',
       link: '/transactions',
     },
@@ -42,21 +42,23 @@ const HomeDashboard = () => {
   // array of agent stats
   const agencyOveriewData = [
     {
-      amount: NumberFormatter(4103),
+      amount: NumberFormatter(
+        homeDashboardData.totalCompleletedTransactionsCount,
+      ),
       label: 'Total Number of Completed Transactions',
     },
     {
-      amount: NumberFormatter(10),
+      amount: NumberFormatter(homeDashboardData.totalFailedTransactionsCount),
       label: 'Total Number of Failed Transactions',
     },
     {
-      amount: NumberFormatter(24),
+      amount: NumberFormatter(homeDashboardData.totalPendingTransactionsCount),
       label: 'Total  Number of Pending Transactions',
     },
     {
       amount: (
         <CurrencyFormat
-          value={3283232}
+          value={homeDashboardData.totalCompleletedTransactionsSum}
           displayType={'text'}
           thousandSeparator={true}
           prefix={'₦'}
@@ -67,7 +69,7 @@ const HomeDashboard = () => {
     {
       amount: (
         <CurrencyFormat
-          value={1283232}
+          value={homeDashboardData.totalSettlementSum}
           displayType={'text'}
           thousandSeparator={true}
           prefix={'₦'}
@@ -78,7 +80,7 @@ const HomeDashboard = () => {
     {
       amount: (
         <CurrencyFormat
-          value={2322}
+          value={homeDashboardData.totalChargesSum}
           displayType={'text'}
           thousandSeparator={true}
           prefix={'₦'}
@@ -197,78 +199,6 @@ const showingdropdownData = [
   },
 ]
 
-// FIXME: Temp data (should be replaced with real data)
-const rows = [
-  {
-    id: 1,
-    col1: 1,
-    col2: 'POS Withdrawal',
-    col3: 'Savannah',
-    col4: 28,
-    col5: 101234,
-    col6: 'TID-131332',
-    col7: '349234893948',
-    col8: '190939203',
-    col9: '200000',
-    col10: '423',
-    col11: '23',
-    col12: 'Pending',
-    col13: 'Dec 30, 2018 05:12',
-    col14: '',
-  },
-  {
-    id: 2,
-    col1: 2,
-    col2: 'Bessie Cooper',
-    col3: 'Tv Subscription',
-    col4: 5000,
-    col5: 39.9,
-    col6: '443943043',
-    col7: 'Bank Card',
-    col8: 'pending',
-    col9: 'Dec 30, 2018 05:12',
-    col10: '',
-  },
-  {
-    id: 3,
-    col1: 3,
-    col2: 'Bessie Cooper',
-    col3: 'Tv Subscription',
-    col4: 5000,
-    col5: 39.9,
-    col6: '443943043',
-    col7: 'Bank Card',
-    col8: 'pending',
-    col9: 'Dec 30, 2018 05:12',
-    col10: '',
-  },
-  {
-    id: 4,
-    col1: 4,
-    col2: 'Bessie Cooper',
-    col3: 'Tv Subscription',
-    col4: 5000,
-    col5: 39.9,
-    col6: '443943043',
-    col7: 'Bank Card',
-    col8: 'completed',
-    col9: 'Dec 30, 2018 05:12',
-    col10: '',
-  },
-  {
-    id: 5,
-    col1: 5,
-    col2: 'Bessie Cooper',
-    col3: 'Tv Subscription',
-    col4: 5000,
-    col5: 39.9,
-    col6: '443943043',
-    col7: 'Bank Card',
-    col8: 'pending',
-    col9: 'Dec 30, 2018 05:12',
-    col10: '',
-  },
-]
 
 const columns = [
   {
