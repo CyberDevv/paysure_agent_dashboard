@@ -16,7 +16,7 @@ import {
   SearchBar
 } from '..'
 
-const TransactionsDashboard = () => {
+const TransactionsDashboard = ({ transactionData }) => {
   const [modalView, setModalView] = React.useState(false)
 
   const columns = [
